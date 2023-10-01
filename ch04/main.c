@@ -20,7 +20,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stdbool.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -71,10 +70,6 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-	flag = 1;
-	flag_block1 = 0;
-	flag_set1 = 0;
-
 
   /* USER CODE END 1 */
 
@@ -109,25 +104,18 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+/*
+	 HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+	 HAL_Delay(100);
+	 HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+	 HAL_Delay(100);
 
-	  if((GPIOC->IDR & GPIO_PIN_13)&& !flag_block1){
+*/
 
-		  flag_block1 = 1;
-		  flag_set1 = !flag_set1;
-
-		 if(flag_set1){
-
-			//GPIOA->BSRR = GPIO_PIN_5; //ON
-            GPIOA->BSRR = ((uint32_t)0x0020); //ON
-
-
-		 }else if(!flag_set1){
-			 GPIOA->BSRR = GPIO_PIN_5 << 16;
-		 }
-
-	  }else if(!(GPIOC->IDR & GPIO_PIN_13)&& flag_block1){
-		  flag_block1 = 0;
-	  }
+	 GPIOA->BSRR = GPIO_PIN_5; //ON
+	 HAL_Delay(100);
+	 GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
+	 HAL_Delay(100);
 
 
   }
