@@ -57,7 +57,7 @@ void but2(){
      		 if(flag_set1){
 
      			 //GPIOA->BSRR = GPIO_PIN_5; //ON
-     			 //  GPIOA->BSRR = ((uint16_t)0x20); //ON
+     			 //  GPIOA->BSRR = ((uint16_t)0x0020); //ON
      			 GPIOA->BSRR = ((uint16_t)0b0000000000100000); // ON
 
      		 }else if(!flag_set1){
