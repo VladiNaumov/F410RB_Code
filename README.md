@@ -1,8 +1,8 @@
 ## STM32 NUCLEO-410RB
 
-- ch01
-- ch02
-- ch03
+- ch01 blink
+- ch02 but
+- ch03 but/lock
 
 ## 
 
