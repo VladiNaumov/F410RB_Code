@@ -49,22 +49,25 @@ void but2(){
 
 
 	 
-	  if((GPIOC->IDR & GPIO_PIN_13)&& !flag_block1){
+	 if((GPIOC->IDR & GPIO_PIN_13)&& !flag_block1){
 
-		  flag_block1 = 1;
-		  flag_set1 = !flag_set1;
+     		  flag_block1 = 1;
+     		  flag_set1 = !flag_set1;
 
-		 if(flag_set1){
+     		 if(flag_set1){
 
-			 GPIOA->BSRR = GPIO_PIN_5;
+     			 //GPIOA->BSRR = GPIO_PIN_5; //ON
+     			 //  GPIOA->BSRR = ((uint16_t)0x20); //ON
+     			 GPIOA->BSRR = ((uint16_t)0b0000000000100000); // ON
 
-		 }else if(!flag_set1){
-			 GPIOA->BSRR = GPIO_PIN_5 << 16;
-		 }
+     		 }else if(!flag_set1){
+     		    // GPIOA->BSRR = ((uint16_t)0x0020) << 16;  //OFF
+     		     GPIOA->BSRR = ((uint16_t)0b0000000000100000) << 16;
+     		 }
 
-	  }else if(!(GPIOC->IDR & GPIO_PIN_13)&& flag_block1){
-		  flag_block1 = 0;
-	  }
+     	  }else if(!(GPIOC->IDR & GPIO_PIN_13)&& flag_block1){
+     		  flag_block1 = 0;
+     	  }
 	
 }
 
