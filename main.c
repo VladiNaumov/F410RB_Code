@@ -12,9 +12,9 @@ void blink(){
 void blink2(){
 
 
-	 GPIOA->BSRR = GPIO_PIN_5;
+	 GPIOA->BSRR = GPIO_PIN_5;  //ON
 	 HAL_Delay(100);
-	 GPIOA->BSRR = GPIO_PIN_5<<16;
+	 GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
 	 HAL_Delay(100);
 
 }
@@ -47,8 +47,8 @@ void but2(){
 	flag_block1 = 0;
 	flag_set1 = 0;
 
-	
-	
+
+	 
 	  if((GPIOC->IDR & GPIO_PIN_13)&& !flag_block1){
 
 		  flag_block1 = 1;
@@ -56,10 +56,10 @@ void but2(){
 
 		 if(flag_set1){
 
-			 GPIOA->BSRR = GPIO_PIN_5<<16;
+			 GPIOA->BSRR = GPIO_PIN_5;
 
 		 }else if(!flag_set1){
-			 GPIOA->BSRR = GPIO_PIN_5<<16;
+			 GPIOA->BSRR = GPIO_PIN_5 << 16;
 		 }
 
 	  }else if(!(GPIOC->IDR & GPIO_PIN_13)&& flag_block1){

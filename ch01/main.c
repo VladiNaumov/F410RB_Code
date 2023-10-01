@@ -112,9 +112,9 @@ int main(void)
 
 */
 
-	 GPIOA->BSRR = GPIO_PIN_5;
+	 GPIOA->BSRR = GPIO_PIN_5; //ON
 	 HAL_Delay(100);
-	 GPIOA->BSRR = GPIO_PIN_5<<16;
+	 GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
 	 HAL_Delay(100);
 
 

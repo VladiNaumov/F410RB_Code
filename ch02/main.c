@@ -109,12 +109,12 @@ int main(void)
      {
               // HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)
 
-             // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-              GPIOA->BSRR = GPIO_PIN_5;
+             // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+              GPIOA->BSRR = GPIO_PIN_5; //ON
     }else{
 
-            //  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-              GPIOA->BSRR = GPIO_PIN_5<<16;
+            //  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+              GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
 
     }
   /* USER CODE END 3 */
