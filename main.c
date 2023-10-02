@@ -57,12 +57,13 @@ void but2(){
      		 if(flag_set1){
 
      			 //GPIOA->BSRR = GPIO_PIN_5; //ON
-     			 //  GPIOA->BSRR = ((uint16_t)0x0020); //ON
-     			 GPIOA->BSRR = ((uint32_t)0b0000000000100000); // ON
+     			  GPIOA->BSRR = 0x0020; // 0b0000000000100000 ON
 
      		 }else if(!flag_set1){
-     		    // GPIOA->BSRR = ((uint16_t)0x0020) << 16;  //OFF
-     		     GPIOA->BSRR = ((uint32_t)0b0000000000100000) << 16;
+
+     		   // GPIOA->BSRR = GPIO_PIN_5<<16;
+     		    GPIOA->BSRR = 0x0020 << 16; // 0b0000000000100000 << 16  OFF
+
      		 }
 
      	  }else if(!(GPIOC->IDR & GPIO_PIN_13)&& flag_block1){
