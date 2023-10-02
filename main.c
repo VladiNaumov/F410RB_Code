@@ -62,7 +62,8 @@ void but2(){
      		 }else if(!flag_set1){
 
      		   // GPIOA->BSRR = GPIO_PIN_5<<16;
-     		    GPIOA->BSRR = 0x0020 << 16; // 0b0000000000100000 << 16  OFF
+     		    GPIOA->BSRR = 0x200000; // 0b0000 0000 0010 0000 << 16  = (0x200000) (0b1000000000000000000000) 0FF
+
 
      		 }
 
