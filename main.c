@@ -74,3 +74,49 @@ void but2(){
 }
 
 
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+	if(huart == &huart2)
+	{
+		uint32_t error = HAL_UART_GetError(&huart2);
+
+		if(error & HAL_UART_ERROR_PE)
+		{
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Parity error \n", 29);
+			__HAL_UART_CLEAR_PEFLAG(&huart2);
+		}
+
+		if(error & HAL_UART_ERROR_NE)
+		{
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Noise error \n", 28);
+			__HAL_UART_CLEAR_NEFLAG(&huart2);
+		}
+
+		if(error & HAL_UART_ERROR_FE)
+		{
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Frame error \n", 28);
+			__HAL_UART_CLEAR_FEFLAG(&huart2);
+		}
+
+		if(error & HAL_UART_ERROR_ORE)
+		{
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Overrun error \n", 28);
+			__HAL_UART_CLEAR_OREFLAG(&huart2);
+
+		}
+
+		if(error & HAL_UART_ERROR_DMA)
+		{
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Overrun error \n", 28);
+			__HAL_UART_CLEAR_NEFLAG(&huart2);
+		}
+
+		huart ->ErrorCode = HAL_UART_ERROR_NONE;
+
+
+	}
+
+};
+
+
+
