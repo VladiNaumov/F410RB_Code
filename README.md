@@ -10,8 +10,8 @@
 - ch05 
 
 ## 
-
-- NVIC (Nested Vectored Interrupt Controller — контроллер вложенных векторных прерываний)
+- UART, USART (Universal asynchronous receiver/transmitter -универсальный асинхронный приемопередатчик)
+- NVIC (Nested Vectored Interrupt Controller -контроллер вложенных векторных прерываний)
 - DMA (контроль управление памятью)
 - HAL RCC (HCI генератор)
 - таймеры (timers)
