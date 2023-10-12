@@ -235,8 +235,8 @@ void HAL_UARTEx_RxEventCallback (UART_HandleTypeDef *huart, uint16_t Size)
 {
 	if(huart->Instance == USART2)
 	{
-		HAL_UART_Transmit_IT(&huart2, RxData, Size);
-		HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxData, 5);  // ожидаем прием данных с компьютера по IT
+		HAL_UART_Transmit_IT(&huart2, RxData, Size); //передача данных
+		HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxData, 5);  // прием данных с компьютера
 	}
 }
 

@@ -73,7 +73,19 @@ void but2(){
 	
 }
 
+/*   UART   */
 
+void HAL_UARTEx_RxEventCallback (UART_HandleTypeDef *huart, uint16_t Size)
+{
+	if(huart->Instance == USART2)
+	{
+		HAL_UART_Transmit_IT(&huart2, RxData, Size); //передача данных
+		HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxData, 5);  // прием данных с компьютера
+	}
+}
+
+
+// фунция Callback
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
 	if(huart == &huart2)
@@ -82,32 +94,32 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 
 		if(error & HAL_UART_ERROR_PE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Parity error \n", 29);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Parity error \n", 29);
 			__HAL_UART_CLEAR_PEFLAG(&huart2);
 		}
 
 		if(error & HAL_UART_ERROR_NE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Noise error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Noise error \n", 28);
 			__HAL_UART_CLEAR_NEFLAG(&huart2);
 		}
 
 		if(error & HAL_UART_ERROR_FE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Frame error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Frame error \n", 28);
 			__HAL_UART_CLEAR_FEFLAG(&huart2);
 		}
 
 		if(error & HAL_UART_ERROR_ORE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Overrun error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Overrun error \n", 28);
 			__HAL_UART_CLEAR_OREFLAG(&huart2);
 
 		}
 
 		if(error & HAL_UART_ERROR_DMA)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Overrun error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Overrun error \n", 28);
 			__HAL_UART_CLEAR_NEFLAG(&huart2);
 		}
 

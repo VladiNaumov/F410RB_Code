@@ -5,7 +5,7 @@
 - ch01 blink
 - ch02 but
 - ch03 but/lock
-- ch04 UART_IT 
+- ch04 UART (в примере используется прирывания) 
 - ch05 
 
 ## 
