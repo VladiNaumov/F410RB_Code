@@ -2,16 +2,16 @@
 
 -file bit.c пример битовых операций
 
-- ch01 blink
-- ch02 but
-- ch03 but/lock
+- ch01 GPIO (blink)
+- ch02 GPIO (but)
+- ch03 GPIO (but/lock)
 
-- ch04 UART + NVIC (обработчик прерывания - interrupt handler) 
+- ch04 UART + обработчик прерывания - interrupt handler
 - ch05 
 
 ## 
 
-- NVIC (обработчик прерывания - interrupt handler)
+- NVIC (Nested Vectored Interrupt Controller — контроллер вложенных векторных прерываний)
 - DMA (контроль управление памятью)
 - HAL RCC (HCI генератор)
 - таймеры (timers)
