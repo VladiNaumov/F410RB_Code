@@ -18,6 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "usart.h"
+#include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -42,7 +44,6 @@ uint8_t str[] = "HELLO-UART\r\n\0";
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 
@@ -50,8 +51,6 @@ UART_HandleTypeDef huart2;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -89,14 +88,21 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART2_UART_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_UART_Transmit(&huart2, str, 12, 500); // передачу данных
+  HAL_UART_Transmit(&huart1, str, 12, 1000); // передачу данных
 
- // HAL_UART_Transmit_IT(&huart2, tx_buff, 5); //передача данных
- // HAL_UARTEx_ReceiveToIdle_IT(&huart2, rx_buff, 5);  // прием данных с компьютера
+  HAL_UART_Transmit_IT(&huart1, tx_buff, 5); //передача данных
+  HAL_UARTEx_ReceiveToIdle_IT(&huart1, rx_buff, 5);  // прием данных с компьютера
 
+  /* to While() */
+
+  /*
+      HAL_UART_Transmit(&huart1, str, 12, 3000); // передачу данных
+	  HAL_Delay(1000);
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+   */
 
   /* USER CODE END 2 */
 
@@ -105,10 +111,6 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
-	  HAL_UART_Transmit(&huart2, str, 12, 3000); // передачу данных
-	  HAL_Delay(1000);
-	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
     /* USER CODE BEGIN 3 */
   }
@@ -162,77 +164,12 @@ void SystemClock_Config(void)
   }
 }
 
-/**
-  * @brief USART2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART2_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART2_Init 0 */
-
-  /* USER CODE END USART2_Init 0 */
-
-  /* USER CODE BEGIN USART2_Init 1 */
-
-  /* USER CODE END USART2_Init 1 */
-  huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
-  huart2.Init.WordLength = UART_WORDLENGTH_8B;
-  huart2.Init.StopBits = UART_STOPBITS_1;
-  huart2.Init.Parity = UART_PARITY_NONE;
-  huart2.Init.Mode = UART_MODE_TX_RX;
-  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART2_Init 2 */
-
-  /* USER CODE END USART2_Init 2 */
-
-}
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin : LD2_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
-
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
-}
-
 /* USER CODE BEGIN 4 */
 
 
-/*
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-
 	__NOP();
-
 
 }
 
@@ -241,19 +178,23 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
 	__NOP();
 
-
 }
-*/
+
+
+/*
 
 void HAL_UARTEx_RxEventCallback (UART_HandleTypeDef *huart, uint16_t Size)
 {
-	if(huart->Instance == USART2)
+
 	{
-		HAL_UART_Transmit_IT(&huart2, tx_buff, 5); //передача данных
-		HAL_UARTEx_ReceiveToIdle_IT(&huart2, rx_buff, 5);  // прием данных с компьютера
+		HAL_UART_Transmit_IT(&huart1, tx_buff, 5); //передача данных
+		HAL_UARTEx_ReceiveToIdle_IT(&huart1, rx_buff, 5);  // прием данных с компьютера
 	}
 }
+*/
 
+
+/*
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
 	if(huart == &huart2)
@@ -298,8 +239,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 
 };
 
-
-
+*/
 
 /* USER CODE END 4 */
 
