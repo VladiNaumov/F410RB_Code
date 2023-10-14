@@ -26,7 +26,9 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-uint8_t RxData[5] = {0}; //массив для приема данных из ПК режим "эхо"
+uint8_t rx_buff[5]; // буфер (массив) на прием данных
+uint8_t tx_buff[]={1,2,3,4,5}; // буфер (массив) на передачу данных
+uint8_t str[] = "HELLO-UART\r\n\0";
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -56,8 +58,6 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-
 
 /* USER CODE END 0 */
 
@@ -92,11 +92,10 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_UART_Transmit(&huart2, str, 12, 500); // передачу данных
 
-  void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart); // для работы с ошибками
-
-
-  HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxData, 5);
+ // HAL_UART_Transmit_IT(&huart2, tx_buff, 5); //передача данных
+ // HAL_UARTEx_ReceiveToIdle_IT(&huart2, rx_buff, 5);  // прием данных с компьютера
 
 
   /* USER CODE END 2 */
@@ -106,6 +105,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+	  HAL_UART_Transmit(&huart2, str, 12, 3000); // передачу данных
+	  HAL_Delay(1000);
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
     /* USER CODE BEGIN 3 */
   }
@@ -129,11 +132,12 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 16;
   RCC_OscInitStruct.PLL.PLLN = 336;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
   RCC_OscInitStruct.PLL.PLLQ = 4;
@@ -203,18 +207,11 @@ static void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;
@@ -230,16 +227,32 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 
+/*
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+
+	__NOP();
+
+
+}
+
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+	__NOP();
+
+
+}
+*/
 
 void HAL_UARTEx_RxEventCallback (UART_HandleTypeDef *huart, uint16_t Size)
 {
 	if(huart->Instance == USART2)
 	{
-		HAL_UART_Transmit_IT(&huart2, RxData, Size); //передача данных
-		HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxData, 5);  // прием данных с компьютера
+		HAL_UART_Transmit_IT(&huart2, tx_buff, 5); //передача данных
+		HAL_UARTEx_ReceiveToIdle_IT(&huart2, rx_buff, 5);  // прием данных с компьютера
 	}
 }
-
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
@@ -249,32 +262,32 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 
 		if(error & HAL_UART_ERROR_PE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Parity error \n", 29);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Parity error \n", 29);
 			__HAL_UART_CLEAR_PEFLAG(&huart2);
 		}
 
 		if(error & HAL_UART_ERROR_NE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Noise error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Noise error \n", 28);
 			__HAL_UART_CLEAR_NEFLAG(&huart2);
 		}
 
 		if(error & HAL_UART_ERROR_FE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Frame error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Frame error \n", 28);
 			__HAL_UART_CLEAR_FEFLAG(&huart2);
 		}
 
 		if(error & HAL_UART_ERROR_ORE)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Overrun error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Overrun error \n", 28);
 			__HAL_UART_CLEAR_OREFLAG(&huart2);
 
 		}
 
 		if(error & HAL_UART_ERROR_DMA)
 		{
-			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callbck - Overrun error \n", 28);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*) "ERROR_Callback - Overrun error \n", 28);
 			__HAL_UART_CLEAR_NEFLAG(&huart2);
 		}
 
@@ -284,6 +297,9 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 	}
 
 };
+
+
+
 
 /* USER CODE END 4 */
 
@@ -301,10 +317,6 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-
-
-
 
 #ifdef  USE_FULL_ASSERT
 /**

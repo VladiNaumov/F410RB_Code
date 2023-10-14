@@ -6,12 +6,12 @@
 - ch02 GPIO (but)
 - ch03 GPIO (but/lock)
 
-- ch04 UART + обработчик прерывания - interrupt handler
+- ch04 UART + UART_IT
 - ch05 
 
 ## 
 - UART, USART (Universal asynchronous receiver/transmitter -универсальный асинхронный приемопередатчик)
-- NVIC (Nested Vectored Interrupt Controller -контроллер вложенных векторных прерываний)
+- NVIC & EXTI контроллер (interrupt) вложенных векторных прерываний, EXTI внешний контроллер прерывания/события
 - DMA (контроль управление памятью)
 - HAL RCC (HCI генератор)
 - таймеры (timers)
@@ -19,9 +19,8 @@
 - ЦАП (DAC)
 - I2C
 - SPI
-- CRC
 - циклический контроль избыточности (cyclic redundancy check - CRC)
-- независимый  оконный сторожевойа таймер
+- независимый  оконный сторожевойа таймер (IWDG, WWDG)
 - часы реального времени (real time clock RTC)
 
 ## License

@@ -131,4 +131,34 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 };
 
 
+	  HAL_Delay(100);
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	  
+
+/* UART&USART*/
+uint8_t rx_buff[10]; // буфер (массив) на прием данных
+uint8_t tx_buff[]={0,1,2,3,4,5,6,7,8,9}; // буфер (массив) на передачу данных
+
+
+  void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart);
+  HAL_UART_Receive_IT(&huart1, rx_buff, 10); // прием данных
+  HAL_UART_Transmit_IT(&huart1, tx_buff, 10); // передачу данных
+
+
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+
+	__NOP();
+
+
+}
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+	__NOP();
+
+
+}
+
 
