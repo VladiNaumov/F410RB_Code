@@ -6,8 +6,8 @@
 - ch02 GPIO (but)
 - ch03 GPIO (but/lock)
 
-- ch04 UART + UART_IT
-- ch05 
+- ch04 USART + UART_IT
+- ch05 USART + UART_IT CMSIS
 
 ## 
 - UART, USART (Universal asynchronous receiver/transmitter -универсальный асинхронный приемопередатчик)
