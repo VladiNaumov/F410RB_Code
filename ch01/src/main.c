@@ -117,6 +117,17 @@ int main(void)
 	 HAL_Delay(100);
 */
 
+     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+	 GPIOA->ODR = 0x0020; // ON
+	 HAL_Delay(1000);
+	 GPIOA->ODR = 0;  //OFF
+
+	 GPIOA->BSRR = GPIO_BSRR_BS9; // ON
+	 HAL_Delay(1000);
+	 GPIOA->BSRR = GPIO_BSRR_BR9; //OFF
+
+  }
 
 
      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
