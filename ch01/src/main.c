@@ -117,6 +117,8 @@ int main(void)
 	 HAL_Delay(100);
 */
 
+
+
      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
 	 GPIOA->ODR = 0x0020; // ON
