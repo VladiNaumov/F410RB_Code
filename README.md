@@ -6,12 +6,12 @@
 - ch02 GPIO (but)
 - ch03 GPIO (but/lock)
 
-- ch04 USART + UART_IT
-- ch05 USART + UART_IT CMSIS
+- ch04 UART + UART_IT
+- ch05 UART + UART_IT CMSIS
 
 ## 
-- UART, USART (Universal asynchronous receiver/transmitter -универсальный асинхронный приемопередатчик)
-- NVIC & EXTI контроллер (interrupt) вложенных векторных прерываний, EXTI внешний контроллер прерывания/события
+- UART/USART (Universal asynchronous receiver/transmitter -универсальный асинхронный приемопередатчик)
+- NVIC/EXTI контроллер (interrupt) вложенных векторных прерываний, EXTI внешний контроллер прерывания/события
 - DMA (контроль управление памятью)
 - HAL RCC (HCI генератор)
 - таймеры (timers)
