@@ -2,16 +2,18 @@
 
 -file bit.c пример битовых операций
 
+- ch00 CMSIS default project
+
 - ch01 GPIO (blink)
 - ch02 GPIO (but)
 - ch03 GPIO (but/lock)
 
-- ch04 UART + UART_IT
-- ch05 UART + UART_IT CMSIS
+- ch04 UART(USART) - Interrupt mode
+- ch05 UART(USART) CMSIS -pulling mode
 
 ## 
 - UART/USART (Universal asynchronous receiver/transmitter -универсальный асинхронный приемопередатчик)
-- NVIC/EXTI контроллер (interrupt) вложенных векторных прерываний, EXTI внешний контроллер прерывания/события
+- NVIC/EXTI контроллер приоритетных векторных прерываний (interrupt), EXTI внешний контроллер ((interrupt)) прерывания/события
 - DMA (контроль управление памятью)
 - HAL RCC (HCI генератор)
 - таймеры (timers)
