@@ -100,9 +100,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
 
 /*
 	 HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
@@ -112,15 +110,26 @@ int main(void)
 
 */
 
+/*
 	 GPIOA->BSRR = GPIO_PIN_5; //ON
 	 HAL_Delay(100);
 	 GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
 	 HAL_Delay(100);
+*/
 
+     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+	 GPIOA->ODR = 0x0020; // ON
+	 HAL_Delay(1000);
+	 GPIOA->ODR = 0;  //OFF
+
+	 GPIOA->BSRR = GPIO_BSRR_BS9; // ON
+	 HAL_Delay(1000);
+	 GPIOA->BSRR = GPIO_BSRR_BR9; //OFF
 
   }
-  /* USER CODE END 3 */
-}
+
+  }
 
 /**
   * @brief System Clock Configuration
