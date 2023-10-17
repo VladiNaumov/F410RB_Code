@@ -28,6 +28,6 @@
 
 ## License
 
--------
+test
 
 - https://www.st.com/content/st_com/en/shortcuts.html
