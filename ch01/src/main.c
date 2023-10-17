@@ -105,15 +105,20 @@ int main(void)
      GPIOA->BSRR = 0x200000; // 0b0000 0000 0010 0000 << 16  = (0x200000) (0b1000000000000000000000) 0FF
 */
 
-     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+ //    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
+/*
 	 GPIOA->ODR = 0x0020; // ON
 	 HAL_Delay(1000);
 	 GPIOA->ODR = 0;  //OFF
-
-	 GPIOA->BSRR = GPIO_BSRR_BS9; // ON
 	 HAL_Delay(1000);
-	 GPIOA->BSRR = GPIO_BSRR_BR9; //OFF
+*/
+
+	 GPIOA->BSRR = GPIO_BSRR_BS5;   // 0x0020 ON 
+	 HAL_Delay(1000);
+	 GPIOA->BSRR = GPIO_BSRR_BS5 << 16; //0x200000 OFF
+	 HAL_Delay(1000);
+	 
 
   }
 
