@@ -12,7 +12,7 @@
 - ch05 UART(USART) CMSIS -pulling mode
 
 ## 
-- UART/USART (Universal asynchronous receiver/transmitter -универсальный асинхронный приемопередатчик)
+- UART/USART (Universal asynchronous receiver/transmitter) -универсальный асинхронный приемопередатчик.
 - NVIC Контроллер –это специальный аппаратный модуль внутри микроконтроллеров на базе Cortex-M, отвечающий за обработку прерываний (interrupts).
 - EXTI Контроллер внешних прерываний/событий (interrupts/events) -отвечает за взаимосвязь между внешними сигналами I/O и контроллером NVIC.
 - DMA (контроль управление памятью)
