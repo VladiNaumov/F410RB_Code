@@ -29,6 +29,5 @@ int main(void)
    printf("Age: %d \t salary: %d \n", alex.age, alex.salary);
 
 
-
     return 0;
 }
