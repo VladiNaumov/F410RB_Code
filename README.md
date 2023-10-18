@@ -4,7 +4,7 @@
 
 - F410_CMSIS default project
 
-- ch00 example, experience
+- ch00 example/experience
 
 - ch01 GPIO (blink)
 - ch02 GPIO (but)
