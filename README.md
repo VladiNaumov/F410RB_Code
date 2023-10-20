@@ -16,6 +16,7 @@
 - ch06 DMA Direct Memory Access
 
 ## 
+
 - UART/USART (Universal asynchronous receiver/transmitter) -универсальный асинхронный приемопередатчик.
 - NVIC Контроллер –это специальный аппаратный модуль внутри микроконтроллеров на базе Cortex-M, отвечающий за обработку прерываний (interrupts).
 - EXTI Контроллер внешних прерываний/событий (interrupts/events) -отвечает за взаимосвязь между внешними сигналами I/O и контроллером NVIC.
@@ -29,6 +30,12 @@
 - циклический контроль избыточности (cyclic redundancy check - CRC)
 - независимый  оконный сторожевойа таймер (IWDG, WWDG)
 - часы реального времени (real time clock RTC)
+
+## порядок инициализации STM32F410RB (пример в каталоге ch00/configuration/main.c)
+
+1. Запуск отладчика SYS (Serial Wire)
+2. Запуск тактирования RCC (Crystal ceramic resonator)
+2. Инициализация портов (GPIOA, GPIOB, GPIOC, GPIOH)
 
 ## License
 
