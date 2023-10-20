@@ -192,7 +192,15 @@ static void MX_GPIO_Init(void)
 
 }
 
-/*Для того, чтобы отследить момент окончания передачи, либо приема существуют callback-функции: */
+/*
+
+Для того, чтобы отследить момент окончания передачи, либо приема существуют callback-функции:
+
+HAL_UART_TxCpltCallback()
+HAL_UART_RxCpltCallback()
+Их можно, к примеру, переопределить
+
+ */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if (huart->Instance == USART1)
