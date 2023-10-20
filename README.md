@@ -1,7 +1,5 @@
 ## STM32 NUCLEO-410RB
 
--file bit.c пример битовых операций
-
 - F410_CMSIS default project
 
 - ch00 example/experience
@@ -31,7 +29,9 @@
 - независимый  оконный сторожевойа таймер (IWDG, WWDG)
 - часы реального времени (real time clock RTC)
 
-## порядок инициализации STM32F410RB (пример в каталоге ch00/configuration/main.c)
+## 
+
+Порядок инициализации STM32F410RB (пример в каталоге ch00/configuration/main.c)
 
 1. Запуск отладчика SYS (Serial Wire)
 2. Запуск тактирования RCC (Crystal ceramic resonator)
