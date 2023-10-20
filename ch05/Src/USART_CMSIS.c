@@ -19,7 +19,7 @@ USART1->CR2=~USART_CR2_STOP;
 USART1->CR1=~USART_CR1_RE | USART1_CR1_UE;
 
 // передать байт данных 
-UsART1->DR = data;
+USART1->DR = data;
 
 while ((USART1->SR USART_SR_TC) == 0){}
 
@@ -40,32 +40,46 @@ temp = USART1->DR;
 
 */
 
+#include "main.h"
+#define F_CPU 72000000UL;
+
+
+uint32_t temp = 0, data =1, i;
+uint8_t b;
+uint32_t bufRX[8]={0};
+
+void USART1_IRQHandler(void)
+{
+
+	// если прием завершен
+	if((USART1->SR & USART_SR_RXNE)!=0)
+	{
+		//считать принятый байт
+		temp = USART1->DR;
+		//выполнить какие то действия
+	}
+	// если передача завершена
+	if((USART1->SR & USART_SR_TC)!=0)
+	{
+		// сбросить флаг
+		USART1->SR=~USART_SR_TC;
+
+	}
+
+}
+ main(void)
+{
+
+
+
+}
+
 // разрешить прерывание от usart1
 NVIC_EnabledRQ (USART1_IRQn);
 // разрешит прерывание по окончание передачи 
 USART1->CR1 |= USART1_CR1_ICE;
 // разрешит прерывание поприему 
 USART1->CR1 |= USART1_CR1_RXNEIE;
-
-void USSART1_IRÖHandIER(VOID){
-	// временная байтовая переменная
-	unsignet char temp, data;
-	
-	// если прием завершен
-	if((USART_SR & USART_SR_RXNE)!=0)
-	{
-		//считать принятый байт
-		temp = USART1->DR;
-		//выполнить какие то действия 
-	}
-	// если передача завершена
-	if((USART1->SR & USART_SR_TC)!=00)
-	{
-		// сбросить флаг
-		USART1->SR=~USART_SR_TC; 
-		
-	}
-}
 
 
 
