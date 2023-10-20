@@ -11,7 +11,9 @@
 - ch03 GPIO (but/lock)
 
 - ch04 UART(USART) - Interrupt mode
+- ch04-01 UART(USART) - Interrupt mode
 - ch05 UART(USART) CMSIS -Interrupt mode
+- ch06 DMA Direct Memory Access
 
 ## 
 - UART/USART (Universal asynchronous receiver/transmitter) -универсальный асинхронный приемопередатчик.
