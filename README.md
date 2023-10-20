@@ -1,17 +1,17 @@
 ## STM32 NUCLEO-410RB
 
-- F410_CMSIS default project
-
 - ch00 example/experience
-
 - ch01 GPIO (blink)
 - ch02 GPIO (but)
 - ch03 GPIO (but/lock)
-
-- ch04 UART(USART) - Interrupt mode
-- ch04-01 UART(USART) - Interrupt mode
-- ch05 UART(USART) CMSIS -Interrupt mode
+- ch04 UART(USART) - Interrupt mode 
+- ch05 UART(USART) - Interrupt mode
 - ch06 DMA Direct Memory Access
+
+
+- F410_CMSIS default project
+
+
 
 ## 
 
