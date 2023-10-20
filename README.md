@@ -33,9 +33,9 @@
 
 Порядок инициализации STM32F410RB (пример в каталоге ch00/configuration/main.c)
 
-1. Запуск отладчика SYS (Serial Wire)
-2. Запуск тактирования RCC (Crystal ceramic resonator)
-2. Инициализация портов (GPIOA, GPIOB, GPIOC, GPIOH)
+1. Запуск отладчика SYS (Serial Wire) - DBG (Debug support)
+2. Запуск тактирования - RCC (Crystal ceramic resonator)
+2. Инициализация портов - (GPIOA, GPIOB, GPIOC, GPIOH)
 
 ## License
 
