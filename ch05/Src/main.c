@@ -47,10 +47,16 @@ int main(void)
 
   for (unsigned char i = 0; i < BUFFER_SIZE; i++)
    {
+      // передачи данных
        transmitBuffer[i] = i + 1;
+       //прием данных
        receiveBuffer[i] = 0;
    }
+
+   //функции прием  данных
    HAL_UART_Receive_IT(&huart1, receiveBuffer, BUFFER_SIZE);
+
+   // функции передачи данных
    HAL_UART_Transmit_IT(&huart2, transmitBuffer, BUFFER_SIZE);
 
 

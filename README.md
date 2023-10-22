@@ -6,6 +6,10 @@
 - ch03 GPIO (but/lock)
 - ch04 UART(USART) - Interrupt mode 
 - ch05 UART(USART) - Interrupt mode
+
+UART_MODE_RX: вход последовательных принимаемых данных. 
+TUART_MODE_TX: выход передаваемых данных. 
+
 - ch06 DMA Direct Memory Access
 
 
