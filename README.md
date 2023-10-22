@@ -6,15 +6,9 @@
 - ch03 GPIO (but/lock)
 - ch04 UART(USART) - Interrupt mode 
 - ch05 UART(USART) - Interrupt mode
-
-UART_MODE_RX: вход последовательных принимаемых данных. 
-TUART_MODE_TX: выход передаваемых данных. 
-
 - ch06 DMA Direct Memory Access
 
-
 - F410_CMSIS default project
-
 
 
 ## 
@@ -40,6 +34,11 @@ TUART_MODE_TX: выход передаваемых данных.
 1. Запуск отладчика SYS (Serial Wire) - DBG (Debug support)
 2. Запуск тактирования - RCC (Crystal ceramic resonator)
 2. Инициализация портов - (GPIOA, GPIOB, GPIOC, GPIOH)
+
+
+INFO:
+UART_MODE_RX: вход принимаемых данных. 
+TUART_MODE_TX: выход передаваемых данных. 
 
 ## License
 
