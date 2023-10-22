@@ -41,6 +41,8 @@ int main(void)
   MX_USART6_UART_Init();
 
   /* USER CODE BEGIN 2 */
+
+  // передача данных
   HAL_UART_Transmit_DMA(&huart6, str, sizeof(str));
   /* USER CODE END 2 */
 
