@@ -38,8 +38,8 @@
 
 
 INFO:
-UART_MODE_RX: вход принимаемых данных. 
-UART_MODE_TX: выход передаваемых данных. 
+UART_MODE_RX (UART_Receive): приём данных. 
+UART_MODE_TX (UART_Transmit): передача данных. 
 
 ## License
 
