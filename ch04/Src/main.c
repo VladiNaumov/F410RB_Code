@@ -1,20 +1,14 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+
+/*
+
+INFO:
+UART_MODE_RX (UART_Receive): приём данных. 
+UART_MODE_TX (UART_Transmit): передача данных. 
+
+желательно переконфигурировать под USART2
+
+*/
+
 
 #include "main.h"
 
@@ -22,6 +16,8 @@
 
 RX: вход последовательных принимаемых данных.
 TX: выход передаваемых данных.
+
+желательно переконфигурировать под USART2
 
 */
 

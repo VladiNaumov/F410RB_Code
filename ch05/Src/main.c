@@ -1,6 +1,19 @@
 /*
 Прием и передача данных по UART
 https://microtechnics.ru/stm32-uart-priem-i-peredacha-dannyh-po-uart-v-stm32cubemx/#more-2821
+
+
+
+/*
+
+INFO:
+UART_MODE_RX (UART_Receive): приём данных. 
+UART_MODE_TX (UART_Transmit): передача данных. 
+
+*/
+
+
+
 */
 
 
