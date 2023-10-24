@@ -161,6 +161,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 
 }
 
+ // сканирование I2C порта на наличие подключения 
 void I2C_Scan ()
 {
 	// создание переменной, содержащей статус

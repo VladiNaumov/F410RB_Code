@@ -7,6 +7,7 @@
 - ch04 UART(USART) - Interrupt mode 
 - ch05 UART(USART) - Interrupt mode
 - ch06 DMA Direct Memory Access
+- ch07 I2C LCD 2004A 0x27
 
 - F410_CMSIS default project
 
