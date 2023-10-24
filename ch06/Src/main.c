@@ -10,7 +10,7 @@ DMA_HandleTypeDef hdma_usart6_rx;
 DMA_HandleTypeDef hdma_usart6_tx;
 
 /* USER CODE BEGIN PV */
-/* USER CODE BEGIN Includes */
+
 uint8_t str[] = "HELLO-UART\r\n\0";
 /* USER CODE END PV */
 
