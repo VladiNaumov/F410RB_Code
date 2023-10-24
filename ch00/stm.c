@@ -169,7 +169,7 @@ void I2C_Scan ()
 	// сообщение о начале процедуры
         char info[] = "Scanning I2C bus...\r\n";
         // отправка сообщения по UART
-        HAL_UART_Transmit(&huart6, (uint8_t*)info, strlen(info), HAL_MAX_DELAY);
+        HAL_UART_Transmit(&huart2, (uint8_t*)info, strlen(info), HAL_MAX_DELAY);
 
 	/* &huart5 - адрес используемого UART
 	 * (uint8_t*)info - указатель на значение для отправки
@@ -190,12 +190,12 @@ void I2C_Scan ()
                 // 16тиричного значения:
 	    	snprintf(msg, sizeof(msg), "0x%02X", i);
 	    	// отправка номера откликнувшегося адреса
-	    	HAL_UART_Transmit(&huart6, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
+	    	HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 	    	// переход на новую строчку
-	    	HAL_UART_Transmit(&huart6, (uint8_t*)"\r\n", 2, HAL_MAX_DELAY);
+	    	HAL_UART_Transmit(&huart2, (uint8_t*)"\r\n", 2, HAL_MAX_DELAY);
 	    }
-	    else HAL_UART_Transmit(&huart6, (uint8_t*)".", 1, HAL_MAX_DELAY);
+	    else HAL_UART_Transmit(&huart2, (uint8_t*)".", 1, HAL_MAX_DELAY);
 	}
-	HAL_UART_Transmit(&huart6, (uint8_t*)"\r\n", 2, HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart2, (uint8_t*)"\r\n", 2, HAL_MAX_DELAY);
 }
 
