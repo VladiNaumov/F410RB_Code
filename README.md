@@ -1,6 +1,6 @@
 ## STM32 NUCLEO-410RB
 
-- ch00 example/experience
+- ch00 example/configuration
 - ch01 GPIO (blink)
 - ch02 GPIO (but)
 - ch03 GPIO (but/lock)
