@@ -46,28 +46,30 @@ int main()
 */
     res = a & b;
     int_to_binary(a, str1);
-    printf("%srn", 	str1);
-    printf("    &rn");
+    printf("%s\n", str1);
+    printf("    &\n");
     int_to_binary(b, str1);
-    printf("%srn", 	str1);
-    printf("==========rn");
+    printf("%s\n", str1);
+    printf("-----------\n");
     int_to_binary(res, str1);
-    printf("%srn", 	str1);
+    printf("%s\n", str1);
+    printf("\n");
 
     //----------------------------------------------
 
     /*
     применением операции ИЛИ
     */ 
-    res = a | b;
+	res = a | b;
     int_to_binary(a, str1);
-    printf("%srn", 	str1);
-    printf("    |rn");
+    printf("%s\n", str1);
+    printf("    |\n");
     int_to_binary(b, str1);
-    printf("%srn", 	str1);
-    printf("==========rn");
+    printf("%s\n", str1);
+    printf("-----------\n");
     int_to_binary(res, str1);
-    printf("%srn", 	str1);
+    printf("%s\n", str1);
+    printf("\n");
 
 //----------------------------------------------
 
@@ -76,15 +78,15 @@ int main()
     */
 
     res = a ^ b;
-
     int_to_binary(a, str1);
-    printf("%srn", str1);
-    printf("   ^rn");
+    printf("%s\n", str1);
+    printf("   ^\n");
     int_to_binary(b, str1);
-    printf("%srn", str1);
-    printf("==========rn");
+    printf("%s\n", str1);
+    printf("-----------\n");
     int_to_binary(res, str1);
-    printf("%srn", str1);
+    printf("%s\n", str1);
+    printf("\n");
 
 //----------------------------------------------
 
@@ -93,10 +95,12 @@ int main()
     */
     res = ~a;
     int_to_binary(a, str1);
-    printf("%srn", str1);
-    printf("   ~arn");
+    printf("%s\n", 	str1);
+    printf("   ~\n");
     int_to_binary(res, str1);
-    printf("%srn", str1);
+    printf("%s\n", str1);
+    printf("\n");
+
 
 //----------------------------------------------
 
@@ -104,27 +108,29 @@ int main()
    /*
         Теперь проверим работу со сдвигами. Сдвигать будем одно и то же число, но в разные стороны и на разное количество пунктов
     */
+	
+	int_to_binary(a, str1);
+    printf("%s\n", str1);
 
     res = a>>2;
- 
-    int_to_binary(a, str1);
-    printf("%srn", 	str1);
-    printf("  a>>2rn");
+    printf("  a>>2\n");
     int_to_binary(res, str1);
-    printf("%srn", str1);
-    res = a<<2;
-    printf("  a<<2rn");
-    int_to_binary(res, str1);
-    printf("%srn", str1);
-    res = a>>4;
-    printf("  a>>4rn");
-    int_to_binary(res, str1);
-    printf("%srn", str1);
-    res = a<<4;
-    printf("  a<<4rn");
-    int_to_binary(res, str1);
-    printf("%srn", str1);
+    printf("%s\n", str1);
 
+    res = a<<2;
+    printf("  a<<2\n");
+    int_to_binary(res, str1);
+    printf("%s\n", str1);
+
+    res = a>>4;
+    printf("  a>>4\n");
+    int_to_binary(res, str1);
+    printf("%s\n", str1);
+
+    res = a<<4;
+    printf("  a<<4\n");
+    int_to_binary(res, str1);
+    printf("%s\n", str1);
 }
 
 //----------------------------------------------
@@ -149,7 +155,7 @@ int main(){
 
   //Установим два бита в числе
   int_to_binary(a, str1);
-  printf("%srn", str1);
+  printf("%s\n", str1);
   a |= ((1<<BIT3) | (1<<BIT4));
 
 /*
@@ -167,16 +173,16 @@ int main(){
 
 */
 
-  printf("bit3 and bit4 SETrn");
+  printf("bit3 and bit4 SET\n");
   int_to_binary(a, str1);
-  printf("%srn", str1);
+  printf("%s\n", str1);
 
 
   unsigned char a=0b11000011;
   
   //Сбросим два бита в числе
   int_to_binary(a, str1);
-  printf("%srn", str1);
+   printf("%s\n", str1);
   a &= ~((1<<BIT6) | (1<<BIT1));
 
   /*
@@ -190,9 +196,9 @@ int main(){
   А затем результат данной операции опять присвоится переменной a.
   
   */
-  printf("bit6 and bit1 RESETrn");
+  printf("bit6 and bit1 RESET\n");
   int_to_binary(a, str1);
-  printf("%srn", str1);
+  printf("%s\n", str1);
 
 }
 
