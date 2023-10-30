@@ -143,59 +143,6 @@ int pointer_ten(){
 
 }
 
-int pointer_array(){
-    double point[3] = {0.0, 1.0, 2.0};
-    double *ptr = point;
-
-    /* prints x 0.0, y 1.0 z 2.0 */
-    printf("x %f y %f z %f\n", ptr[0], ptr[1], ptr[2]);
-
-    // printf("length of point is %s\n", length(point));
-
-    return 0;
-}
-
-int pointer_array_one(){
-
-    int array[5] = {1, 2, 3, 4, 5};
-
-    for(int i = 0; i < 5; i++)
-    {
-        void* address = array + i;  // получаем адрес i-го элемента массива
-        int value = *(array + i);   // получаем значение i-го элемента массива
-        printf("array[%d]: address=%p \t value=%d \n", i, address, value);
-    }
-    return 0;
-}
-
-int pointer_two_array(){
-    int array[3][4] = { {1, 2, 3, 4} , {5, 6, 7, 8}, {9, 10, 11, 12}};
-    int n = sizeof(array)/sizeof(array[0]);         // число строк
-    int m = sizeof(array[0])/sizeof(array[0][0]);   // число столбцов
-
-    int *final = array[0] + n * m - 1;  // указатель на самый последний элемент
-    for(int *ptr=array[0], i = 1; ptr <= final; ptr++, i++)
-    {
-        printf("%d \t", *ptr);
-        // если остаток от целочисленного деления равен 0,
-        // переходим на новую строку
-        if(i%m==0)
-        {
-            printf("\n");
-        }
-    }
-    return 0;
-}
-
-int pointer_array_char(){
-
-    char *fruit[] = {"apricot", "apple", "banana", "lemon", "orange"};
-    for(int i=0; i < 5; i++)
-    {
-        printf("%s \n", fruit[i]);
-    }
-    return 0;
-}
 
 int pointer_pointer(){
 
