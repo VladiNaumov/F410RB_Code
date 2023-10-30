@@ -1,5 +1,6 @@
 #include <stdio.h>
   
+// Ссылка структуры на саму себя 
 struct node
 {
     char* value;     // значение 
