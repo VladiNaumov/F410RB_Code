@@ -1,0 +1,16 @@
+F:\ST\STM32CubeIDE_1.15.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\bin;F:\ST\STM32CubeIDE_1.15.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.make.win32_2.1.300.202402091052\tools\bin;F:/ST/STM32CubeIDE_1.15.0/STM32CubeIDE//plugins/com.st.stm32cube.ide.jre.win64_3.1.0.202310310920/jre/bin/server;F:/ST/STM32CubeIDE_1.15.0/STM32CubeIDE//plugins/com.st.stm32cube.ide.jre.win64_3.1.0.202310310920/jre/bin;F:\ST\stm\CubeMx\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\MinGW\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\umbre\AppData\Local\Microsoft\WindowsApps;E:\OSPanel\modules\php\PHP_8.0;C:\Users\umbre\AppData\Roaming\npm;F:\ST\CubeMx\.\jre\\bin;F:\ST\STM_project\F410RB
+
+//compiler
+F:\ST\STM32CubeIDE_1.15.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\bin
+
+
+// document
+F:\ST\STM32CubeIDE_1.15.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\share\doc\gcc-arm-none-eabi\pdf
+
+// linkin script
+F:\ST\STM_project\F410RB
+STM32F410RBTX_FLASH.ld
+
+// OS
+F:\ST\STM_project\F410RB\Core\Startup
+startup_stm32f410rbtx.s

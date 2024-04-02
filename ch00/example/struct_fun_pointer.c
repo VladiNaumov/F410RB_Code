@@ -2,49 +2,6 @@
 
 #include <stdio.h>
   
-typedef struct
-{
-    char* name;
-    int age;
-} person;
-  
-void print_person(person user)
-{
-    printf("Name: %s \n", user.name);
-    printf("Age: %d \n", user.age);
-}
- 
-int main(void)
-{
-    person tom = {.name = "Tom", .age=38 };
-    print_person(tom);
-    return 0;
-}
-
-
-
-#include <stdio.h>
-  
-struct person
-{
-    char* name;
-    int age;
-};
- 
-struct person create_person(char* name, int age)
-{
-    struct person user;
-    user.name = name;
-    user.age = age;
-    return user;
-} 
-int main(void)
-{
-    struct person bob = create_person("Bob", 22);
-    printf("Name: %s \n", bob.name);
-    printf("Age: %d \n", bob.age);
-    return 0;
-}
 
 /*
 
@@ -54,8 +11,6 @@ int main(void)
 Если необходимо уменьшить выделение памяти (особенно если структура большая) или иметь возможность изменять изначальную структуру в функции, то можно передавать в функцию указатель на структуру:
 
 */
-
-#include <stdio.h>
   
 struct person
 {
@@ -63,7 +18,7 @@ struct person
     int age;
 };
  
-void change_person(struct person * user)
+void change_person(struct person* user)
 {
     user->age = user->age + 1;
 } 
