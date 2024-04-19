@@ -21,16 +21,17 @@ USART1->CR1=~USART_CR1_RE | USART1_CR1_UE;
 // передать байт данных 
 USART1->DR = data;
 
+// USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART завершена
 while ((USART1->SR USART_SR_TC) == 0){}
 
 //очистить флаг окончания передачи 
 USART1=~USART_SR_TC;
 
+// USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст.
 while((USART1->SR USART_SR_RXNE)==0){}
 
 //считать принятый байт
 temp = USART1->DR;
-
 
 
 /* Interrupt mode
