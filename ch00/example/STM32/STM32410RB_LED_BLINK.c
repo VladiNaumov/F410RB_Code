@@ -18,7 +18,7 @@
 /*
 порядок инициализации STM32F410RB
 
-1. Запуск отладчика SYS (Serial Wire)
+1. Запуск отладчика SYS (Serial Wire, SWO)
 2. Запуск тактирования RCC (Crystal ceramic resonator)
 2. Инициализация портов (GPIOA, GPIOB, GPIOC, GPIOH)
 
