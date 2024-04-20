@@ -113,17 +113,55 @@ int main(void)
    /* USART ON */
    MY_UART->CR1 |= USART_CR1_UE;
 
- /* ------ luetaan --------------*/
+ /* ------ sending massage --------------*/
 
    void UarSendChar(char ch)
    {
- 	  while ((MY_UART ->ISR & USART_ISR_RXNE_RXFNE)==0)
+ 	  while ((MY_UART ->ISR & USART_ISR_TXE_TXFNF)==0)
  	  {
  		  // inptu
  	  }
 
  	  MY_UART->TDR = ch;
    }
+
+   void UsarSendString(const char* txt)
+   {
+	   while (*txt != 0)
+	   {
+		   UarSendChar (*txt++);
+	   }
+   }
+   
+   /* ------ geting massage --------------*/
+   
+   char UsartGetChar(void)
+   {
+	   while ((MY_UART ->ISR & USART_ISR_RXNE_RXFNE) == 0)
+	   {
+		   // inptu
+	   }
+	   
+	   return MY_UART->RDR;
+   }
+   
+   int UsarReadString (char* txt, int maxLen)
+   {
+	   int pos = 0;
+	   while (pos < maxLen -1)
+	   {
+		   if(txt[pos] < ' ')
+		   {
+			   txt[pos++] = 0;
+			   return pos;
+		   }
+		   pos +=1;
+	   }
+	   txt [pos++] = 0;
+	   return pos;
+   }
+   
+   
 
    UarSendChar('A');
    UarSendChar('B');
@@ -136,7 +174,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		char txt [100];
+	  UsarReadString(txt, sizeof(txt));
+	  UsarSendString(txt);
+	  UsarSendString("\r\n");
+	  
     /* USER CODE BEGIN 3 */
   }
  
