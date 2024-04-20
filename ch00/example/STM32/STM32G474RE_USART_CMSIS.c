@@ -150,6 +150,7 @@ int main(void)
 	   int pos = 0;
 	   while (pos < maxLen -1)
 	   {
+	       txt[pos] = UsartGetChar();
 		   if(txt[pos] < ' ')
 		   {
 			   txt[pos++] = 0;
