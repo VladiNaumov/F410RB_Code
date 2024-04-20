@@ -1,4 +1,4 @@
-
+/*  GPIOA  */
 STM32F410/GPIOA/MODER:0xa80000a0 -Регистр MODER (Mode Register) для порта GPIOA в микроконтроллере STM32F410 управляет режимами работы каждого из пинов порта GPIOA. Каждые два бита в этом регистре управляют режимом работы одного пина GPIO
 STM32F410/GPIOA/MODER/MODER15:0x2
 STM32F410/GPIOA/MODER/MODER14:0x2
@@ -180,6 +180,7 @@ STM32F410/GPIOA/AFRH/AFRH10:0x0
 STM32F410/GPIOA/AFRH/AFRH9:0x0
 STM32F410/GPIOA/AFRH/AFRH8:0x0
 
+/*  USART2  */
 
 STM32F410/USART2/SR:0xc0 - Регистр SR (Status Register) для USART2 в микроконтроллере STM32F410 содержит флаги состояния, которые указывают на различные события и условия, происходящие в модуле USART2.
 STM32F410/USART2/SR/CTS:0x0
@@ -246,7 +247,7 @@ STM32F410/USART2/GTPR:0x0 - Регистр GTPR (Guard Time and Prescaler Regist
 STM32F410/USART2/GTPR/GT:0x0
 STM32F410/USART2/GTPR/PSC:0x0
 
-
+/*  I2C2  */
 
 STM32F410/I2C2/CR1:0x0 - Регистр CR1 (Control Register 1) для модуля I2C2 в микроконтроллере STM32F410 управляет основными параметрами и функциями этого модуля I2C. 
 STM32F410/I2C2/CR1/SWRST:0x0
@@ -319,7 +320,7 @@ STM32F410/I2C2/CCR/CCR:0x0
 STM32F410/I2C2/TRISE:0x0
 STM32F410/I2C2/TRISE/TRISE:0x0
 
-
+/*  SPI1  */
 
 STM32F410/SPI1/CR1:0x0 - Регистр CR1 (Control Register 1) для модуля SPI1 в микроконтроллере STM32F410 управляет основными параметрами и функциями этого модуля SPI.
 STM32F410/SPI1/CR1/BIDIMODE:0x0
@@ -385,6 +386,7 @@ STM32F410/SPI1/I2SPR/MCKOE:0x0
 STM32F410/SPI1/I2SPR/ODD:0x0
 STM32F410/SPI1/I2SPR/I2SDIV:0x0
 
+/*  DMA1  */
 
 STM32F410/DMA1/LISR:0x0
 STM32F410/DMA1/LISR/TCIF3:0x0

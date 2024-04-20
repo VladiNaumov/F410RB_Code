@@ -1,7 +1,7 @@
 
 void blink(){
 
-
+     //HAL USE
 	 HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
 	 HAL_Delay(100);
 	 HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
@@ -12,9 +12,11 @@ void blink(){
 void blink2(){
 
 
-	 GPIOA->BSRR = GPIO_PIN_5;  //ON
+	// GPIOA->BSRR = GPIO_PIN_5;  //ON
+	 GPIOA->BSRR = 0x0020; //ON
 	 HAL_Delay(100);
-	 GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
+	// GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
+	 GPIOA->BSRR = 0x200000; //OFF
 	 HAL_Delay(100);
 
 }
