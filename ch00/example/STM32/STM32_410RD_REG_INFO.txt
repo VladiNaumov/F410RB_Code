@@ -1,5 +1,5 @@
 
-STM32F410/GPIOA/MODER:0xa80000a0
+STM32F410/GPIOA/MODER:0xa80000a0 -Регистр MODER (Mode Register) для порта GPIOA в микроконтроллере STM32F410 управляет режимами работы каждого из пинов порта GPIOA. Каждые два бита в этом регистре управляют режимом работы одного пина GPIO
 STM32F410/GPIOA/MODER/MODER15:0x2
 STM32F410/GPIOA/MODER/MODER14:0x2
 STM32F410/GPIOA/MODER/MODER13:0x2
@@ -17,7 +17,7 @@ STM32F410/GPIOA/MODER/MODER2:0x2
 STM32F410/GPIOA/MODER/MODER1:0x0
 STM32F410/GPIOA/MODER/MODER0:0x0
 
-STM32F410/GPIOA/OTYPER:0x0
+STM32F410/GPIOA/OTYPER:0x0 -Регистр OTYPER (Output Type Register) для порта GPIOA в микроконтроллере STM32F410 управляет типом выхода каждого из пинов порта GPIOA. Каждый бит в этом регистре соответствует одному пину GPIO и определяет тип выхода этого пина.
 STM32F410/GPIOA/OTYPER/OT15:0x0
 STM32F410/GPIOA/OTYPER/OT14:0x0
 STM32F410/GPIOA/OTYPER/OT13:0x0
@@ -35,7 +35,7 @@ STM32F410/GPIOA/OTYPER/OT2:0x0
 STM32F410/GPIOA/OTYPER/OT1:0x0
 STM32F410/GPIOA/OTYPER/OT0:0x0
 
-STM32F410/GPIOA/OSPEEDR:0xc0000f0
+STM32F410/GPIOA/OSPEEDR:0xc0000f0 -Регистр OSPEEDR (Output Speed Register) для порта GPIOA в микроконтроллере STM32F410 управляет скоростью выхода для каждого пина порта GPIOA. Каждые два бита в этом регистре управляют скоростью выхода одного пина GPIO.
 STM32F410/GPIOA/OSPEEDR/OSPEEDR15:0x0
 STM32F410/GPIOA/OSPEEDR/OSPEEDR14:0x0
 STM32F410/GPIOA/OSPEEDR/OSPEEDR13:0x3
@@ -53,7 +53,7 @@ STM32F410/GPIOA/OSPEEDR/OSPEEDR2:0x3
 STM32F410/GPIOA/OSPEEDR/OSPEEDR1:0x0
 STM32F410/GPIOA/OSPEEDR/OSPEEDR0:0x0
 
-STM32F410/GPIOA/PUPDR:0x64000000
+STM32F410/GPIOA/PUPDR:0x64000000 -Регистр PUPDR (Pull-Up/Pull-Down Register) для порта GPIOA в микроконтроллере STM32F410 управляет включением подтягивающих (pull-up) или опускающих (pull-down) резисторов для каждого пина порта GPIOA. Каждые два бита в этом регистре управляют подтягивающими/опускающими резисторами для одного пина GPIO.
 STM32F410/GPIOA/PUPDR/PUPDR15:0x1
 STM32F410/GPIOA/PUPDR/PUPDR14:0x2
 STM32F410/GPIOA/PUPDR/PUPDR13:0x1
@@ -71,7 +71,7 @@ STM32F410/GPIOA/PUPDR/PUPDR2:0x0
 STM32F410/GPIOA/PUPDR/PUPDR1:0x0
 STM32F410/GPIOA/PUPDR/PUPDR0:0x0
 
-STM32F410/GPIOA/IDR:0xc00f
+STM32F410/GPIOA/IDR:0xc00f -Регистр IDR (Input Data Register) для порта GPIOA в микроконтроллере STM32F410 содержит значения входных данных для каждого пина порта GPIOA. Каждый бит в этом регистре представляет один пин порта GPIOA.
 STM32F410/GPIOA/IDR/IDR15:0x1
 STM32F410/GPIOA/IDR/IDR14:0x1
 STM32F410/GPIOA/IDR/IDR13:0x0
@@ -89,7 +89,7 @@ STM32F410/GPIOA/IDR/IDR2:0x1
 STM32F410/GPIOA/IDR/IDR1:0x1
 STM32F410/GPIOA/IDR/IDR0:0x1
 
-STM32F410/GPIOA/ODR:0x0
+STM32F410/GPIOA/ODR:0x0 -Регистр ODR (Output Data Register) для порта GPIOA в микроконтроллере STM32F410 содержит значения выходных данных для каждого пина порта GPIOA. Каждый бит в этом регистре представляет один пин порта GPIOA
 STM32F410/GPIOA/ODR/ODR15:0x0
 STM32F410/GPIOA/ODR/ODR14:0x0
 STM32F410/GPIOA/ODR/ODR13:0x0
@@ -107,7 +107,7 @@ STM32F410/GPIOA/ODR/ODR2:0x0
 STM32F410/GPIOA/ODR/ODR1:0x0
 STM32F410/GPIOA/ODR/ODR0:0x0
 
-STM32F410/GPIOA/BSRR:null
+STM32F410/GPIOA/BSRR:null -Регистр BSRR (Bit Set/Reset Register) для порта GPIOA в микроконтроллере STM32F410 используется для установки или сброса отдельных битов (пинов) в регистре ODR (Output Data Register) порта GPIOA.
 STM32F410/GPIOA/BSRR/BR15:null
 STM32F410/GPIOA/BSRR/BR14:null
 STM32F410/GPIOA/BSRR/BR13:null
@@ -141,7 +141,7 @@ STM32F410/GPIOA/BSRR/BS2:null
 STM32F410/GPIOA/BSRR/BS1:null
 STM32F410/GPIOA/BSRR/BS0:null
 
-STM32F410/GPIOA/LCKR:0x0
+STM32F410/GPIOA/LCKR:0x0 -Регистр LCKR (Lock Register) для порта GPIOA в микроконтроллере STM32F410 используется для блокировки конфигурации и состояния выбранных пинов GPIOA.
 STM32F410/GPIOA/LCKR/LCKK:0x0
 STM32F410/GPIOA/LCKR/LCK15:0x0
 STM32F410/GPIOA/LCKR/LCK14:0x0
@@ -160,7 +160,7 @@ STM32F410/GPIOA/LCKR/LCK2:0x0
 STM32F410/GPIOA/LCKR/LCK1:0x0
 STM32F410/GPIOA/LCKR/LCK0:0x0
 
-STM32F410/GPIOA/AFRL:0x7700
+STM32F410/GPIOA/AFRL:0x7700 -Регистр AFRL (Alternate Function Low Register) для порта GPIOA в микроконтроллере STM32F410 управляет альтернативными функциями для нижних пинов порта GPIOA (GPIOA0 - GPIOA7). Каждые четыре бита в этом регистре соответствуют одному пину порта GPIOA и определяют альтернативную функцию для этого пина.
 STM32F410/GPIOA/AFRL/AFRL7:0x0
 STM32F410/GPIOA/AFRL/AFRL6:0x0
 STM32F410/GPIOA/AFRL/AFRL5:0x0
@@ -170,7 +170,7 @@ STM32F410/GPIOA/AFRL/AFRL2:0x7
 STM32F410/GPIOA/AFRL/AFRL1:0x0
 STM32F410/GPIOA/AFRL/AFRL0:0x0
 
-STM32F410/GPIOA/AFRH:0x0
+STM32F410/GPIOA/AFRH:0x0 -Регистр AFRH (Alternate Function High Register) для порта GPIOA в микроконтроллере STM32F410 управляет альтернативными функциями для верхних пинов порта GPIOA (GPIOA8 - GPIOA15)
 STM32F410/GPIOA/AFRH/AFRH15:0x0
 STM32F410/GPIOA/AFRH/AFRH14:0x0
 STM32F410/GPIOA/AFRH/AFRH13:0x0
@@ -369,7 +369,8 @@ STM32F410/SPI1/RXCRCR/RxCRC:0x0
 STM32F410/SPI1/TXCRCR:0x0
 STM32F410/SPI1/TXCRCR/TxCRC:0x0
 
-STM32F410/SPI1/I2SCFGR:0x0
+STM32F410/SPI1/I2SCFGR:0x0 - 
+Регистр I2SCFGR (I2S Configuration Register) для модуля SPI1 в микроконтроллере STM32F410 используется для настройки параметров и режимов работы интерфейса I2S (Inter-IC Sound). 
 STM32F410/SPI1/I2SCFGR/I2SMOD:0x0
 STM32F410/SPI1/I2SCFGR/I2SE:0x0
 STM32F410/SPI1/I2SCFGR/I2SCFG:0x0
