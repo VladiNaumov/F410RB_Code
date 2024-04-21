@@ -52,14 +52,14 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  
-	 //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-	 //GPIOA->BSRR = GPIO_PIN_5; //ON
-     GPIOA->BSRR = 0x0020; //  ON
-	 HAL_Delay(100);
-	 //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-	 //GPIOA->BSRR = GPIO_PIN_5<<16;
-     GPIOA->BSRR = 0x200000; // OFF
-	 HAL_Delay(100);
+         //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+         //GPIOA->BSRR = GPIO_PIN_5; //ON
+         GPIOA->BSRR = 0x0020; //  ON
+         HAL_Delay(100);
+         //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+         //GPIOA->BSRR = GPIO_PIN_5<<16;
+         GPIOA->BSRR = 0x200000; // OFF
+         HAL_Delay(100);
 	  
     /* USER CODE BEGIN 3 */
   }

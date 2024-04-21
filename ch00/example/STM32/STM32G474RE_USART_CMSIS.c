@@ -33,11 +33,6 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
-
-
   /* USER CODE BEGIN */
   
   /*--------  STM32G474RE --------------------*/
@@ -175,10 +170,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-		char txt [100];
-	  UsarReadString(txt, sizeof(txt));
-	  UsarSendString(txt);
-	  UsarSendString("\r\n");
+        char txt [100];
+        UsarReadString(txt, sizeof(txt));
+        UsarSendString(txt);
+        UsarSendString("\r\n");
 	  
     /* USER CODE BEGIN 3 */
   }
