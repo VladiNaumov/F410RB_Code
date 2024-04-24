@@ -48,7 +48,7 @@ int main(void)
   
   /* USER CODE BEGIN 2 */
   
-  /*--------  определение констант --------------------*/
+/*--------  определение констант --------------------*/
   #define MY_UART USART2
 
 
@@ -56,7 +56,7 @@ int main(void)
 
    void UarSendChar(char ch) // пример interrupts (прерывание) по опросу
    {
-	   /* MY_UART->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
+	   /* USART2->SR: Это ссылка на регистр состояния USART1, где хранятся различные флаги состояния */
 	   /* USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART завершена */
 
 	   while ((MY_UART->SR & USART_SR_TC) == 0){}
@@ -77,9 +77,9 @@ int main(void)
    
    /* ------ geting massage --------------*/
    
-   char UsartGetChar(void) // пример interrupts (прерывание) по опросу
+   char UsartGetChar(void)  // пример interrupts (прерывание) по опросу
    {
-	   /* MY_UART->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
+	   /* USART2->SR: Это ссылка на регистр состояния USART1, где хранятся различные флаги состояния */
 	   /* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */
 	   
 	   while ((MY_UART->SR & USART_SR_RXNE) == 0){}
@@ -87,12 +87,12 @@ int main(void)
 	   return MY_UART->DR;
    }
    
-   int UsarReadString (char* txt, int maxLen)
+   int UsarGetString (char* txt, int maxLen)
    {
 	   int pos = 0;
 	   while (pos < maxLen -1)
 	   {
-	       txt[pos] = UsartGetChar();
+		   txt[pos] = UsartGetChar();
 		   if(txt[pos] < ' ')
 		   {
 			   txt[pos++] = 0;
@@ -107,44 +107,30 @@ int main(void)
  UarSendChar('A');
  UarSendChar('B');
  UarSendChar('C');
- UarSendChar('D');
- UarSendChar('E');
- UarSendChar('F');
-  
+ UarSendChar('\n');
+
  UsarSendString("HELLO IM BOOOT \r\n ");
-   
+
+
   /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
 
-	    HAL_Delay(1500);
-	  	UarSendChar('A');
+	char txt [100];
+	UsarGetString(txt, sizeof(txt));
+	UsarSendString(txt);
+	UsarSendString("\r\n");
 
-	  	UarSendChar('B');
-
-	  	UarSendChar('C');
-	  	HAL_Delay(500);
-
-	
-	  char txt [100];
-	  UsarReadString(txt, sizeof(txt));
-	  UsarSendString(txt);
-	  UsarSendString("Im \r\n");
-
-    /* USER CODE BEGIN 3 */
   }
-  /* USER CODE END 3 */
+ 
 }
 
 /**
   * @brief System Clock Configuration
   * @retval None
- */
-
+  */
+  
 #ifdef  USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
