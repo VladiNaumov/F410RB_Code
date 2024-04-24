@@ -1,34 +1,17 @@
 /*
 Прием и передача данных по UART
 https://microtechnics.ru/stm32-uart-priem-i-peredacha-dannyh-po-uart-v-stm32cubemx/#more-2821
-
-
-
 /*
 
 INFO:
 UART_MODE_RX (UART_Receive): приём данных. 
 UART_MODE_TX (UART_Transmit): передача данных. 
 
-*/
-
-
-
-*/
-
-
 #include "main.h"
-#define BUFFER_SIZE 32
-
 
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
-
-/* USER CODE BEGIN PV */
-uint8_t transmitBuffer[BUFFER_SIZE];
-uint8_t receiveBuffer[BUFFER_SIZE];
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -36,27 +19,28 @@ static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 
-
 /**
   * @brief  The application entry point.
   * @retval int
   */
 int main(void)
 {
-
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-
   /* Configure the system clock */
   SystemClock_Config();
-
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
-  /* USER CODE BEGIN 2 */
+
+  /* USER CODE BEGIN */
+
+#define BUFFER_SIZE 32
+uint8_t transmitBuffer[BUFFER_SIZE];
+uint8_t receiveBuffer[BUFFER_SIZE];
 
   for (unsigned char i = 0; i < BUFFER_SIZE; i++)
    {
@@ -72,8 +56,8 @@ int main(void)
    // функции передачи данных
    HAL_UART_Transmit_IT(&huart2, transmitBuffer, BUFFER_SIZE);
 
+  /* USER CODE END */
 
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
 

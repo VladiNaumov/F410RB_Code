@@ -1,30 +1,11 @@
-
 /*
-
 INFO:
 UART_MODE_RX (UART_Receive): приём данных. 
-UART_MODE_TX (UART_Transmit): передача данных. 
-
+UART_MODE_TX (UART_Transmit): передача данных.
 желательно переконфигурировать под USART2
-
 */
-
 
 #include "main.h"
-
-/*
-
-RX: вход последовательных принимаемых данных.
-TX: выход передаваемых данных.
-
-желательно переконфигурировать под USART2
-
-*/
-
-
-uint8_t rx_buff[5]; // буфер (массив) на прием данных
-uint8_t tx_buff[]={1,2,3,4,5}; // буфер (массив) на передачу данных
-uint8_t str[] = "HELLO-UART\r\n\0";
 
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart1;
@@ -34,7 +15,6 @@ UART_HandleTypeDef huart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
-
 
 /**
   * @brief  The application entry point.
@@ -52,23 +32,33 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
 
+/* USER CODE BEGIN */
+
+/*
+RX: вход последовательных принимаемых данных.
+TX: выход передаваемых данных.
+желательно переконфигурировать под USART2
+*/
+
+uint8_t rx_buff[5]; // буфер (массив) на прием данных
+uint8_t tx_buff[]={1,2,3,4,5}; // буфер (массив) на передачу данных
+uint8_t str[] = "HELLO-UART\r\n\0";
+
 
   HAL_UART_Transmit(&huart1, str, 12, 1000); // передачу данных
 
   HAL_UART_Transmit_IT(&huart1, tx_buff, 5); //передача данных
   HAL_UARTEx_ReceiveToIdle_IT(&huart1, rx_buff, 5);  // прием данных с компьютера
 
-  /* to While() */
-
-  /*
-      HAL_UART_Transmit(&huart1, str, 12, 3000); // передачу данных
-	  HAL_Delay(1000);
-	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-   */
+ /* USER CODE END */
 
   while (1)
   {
-    /* USER CODE */
+    /*
+          HAL_UART_Transmit(&huart1, str, 12, 3000); // передачу данных
+    	  HAL_Delay(1000);
+    	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    */
   }
   
 }
