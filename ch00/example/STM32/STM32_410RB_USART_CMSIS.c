@@ -54,7 +54,7 @@ int main(void)
 
  /* ------ Sending  message --------------*/
 
-   void UarSendChar(char ch)
+   void UarSendChar(char ch) // пример interrupts (прерывание) по опросу
    {
 	   /* MY_UART->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
 	   /* USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART завершена */
@@ -77,7 +77,7 @@ int main(void)
    
    /* ------ geting massage --------------*/
    
-   char UsartGetChar(void)
+   char UsartGetChar(void) // пример interrupts (прерывание) по опросу
    {
 	   /* MY_UART->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
 	   /* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */

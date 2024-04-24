@@ -110,7 +110,7 @@ int main(void)
 
  /* ------ sending massage --------------*/
 
-   void UarSendChar(char ch)
+   void UarSendChar(char ch) // пример interrupts (прерывание) по опросу
    {
  	  while ((MY_UART ->ISR & USART_ISR_TXE_TXFNF)==0)
  	  {
@@ -130,7 +130,7 @@ int main(void)
    
    /* ------ geting massage --------------*/
    
-   char UsartGetChar(void)
+   char UsartGetChar(void) // пример interrupts (прерывание) по опросу
    {
 	   while ((MY_UART ->ISR & USART_ISR_RXNE_RXFNE) == 0)
 	   {
