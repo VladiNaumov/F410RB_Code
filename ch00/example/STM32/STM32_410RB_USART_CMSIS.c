@@ -56,8 +56,8 @@ int main(void)
 
    void UarSendChar(char ch) // пример interrupts (прерывание) по опросу
    {
-	   /* USART2->SR: Это ссылка на регистр состояния USART1, где хранятся различные флаги состояния */
-	   /* USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART завершена */
+	   /* USART2->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
+	   /* USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART2 завершена */
 
 	   while ((MY_UART->SR & USART_SR_TC) == 0){}
 

@@ -45,17 +45,18 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   
-  /* USER CODE BEGIN */
+   /* USER CODE BEGIN */
   
  /*-------- определение констант ---------*/
 
   #define MY_UART USART2
 
   /*-------- реализация кольцевого буфера ---------*/
-
+  
     char bufToUART [128];
     char bufFromUart [128];
-
+	int rxCnt = 0;
+    
   typedef struct{
 	  uint32_t wrPtr;
 	  uint32_t rdPtr;
@@ -93,7 +94,20 @@ int main(void)
 
   void USART2_IRQHandler (void)
   {
-	 //empty
+	/* USART2->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
+	/* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */
+	 if((MY_UART->SR & USART_SR_RXNE)
+	 {
+		 
+	 }
+	 
+	/* USART2->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
+	/* USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART завершена */
+	 if(MY_UART->SR & USART_SR_TC)
+	 {
+		 
+	 }
+	 
   }
 
   void UsarSendString(const char* txt)
