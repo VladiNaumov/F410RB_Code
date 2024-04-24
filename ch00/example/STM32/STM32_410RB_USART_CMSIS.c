@@ -52,7 +52,7 @@ int main(void)
   #define MY_UART USART2
 
 
- /* ------ Sending  message --------------*/
+ /* ------ Sending  messages --------------*/
 
    void UarSendChar(char ch) // пример interrupts (прерывание) по опросу
    {
@@ -75,7 +75,7 @@ int main(void)
 	   }
    }
    
-   /* ------ geting massage --------------*/
+   /* ------ Getting messages --------------*/
    
    char UsartGetChar(void)  // пример interrupts (прерывание) по опросу
    {

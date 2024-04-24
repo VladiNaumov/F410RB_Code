@@ -114,7 +114,7 @@ int main(void)
    {
  	  while ((MY_UART ->ISR & USART_ISR_TXE_TXFNF)==0)
  	  {
- 		  // inptu
+ 		  // empty
  	  }
 
  	  MY_UART->TDR = ch;
@@ -134,7 +134,7 @@ int main(void)
    {
 	   while ((MY_UART ->ISR & USART_ISR_RXNE_RXFNE) == 0)
 	   {
-		   // inptu
+		   // empty
 	   }
 	   
 	   return MY_UART->RDR;
