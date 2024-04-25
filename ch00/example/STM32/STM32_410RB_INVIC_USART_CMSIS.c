@@ -78,7 +78,7 @@ int main(void)
 	  {
 		  return;
 	  }
-        ring->wrPtr[(ring->wrPtr++)%ring->size] = ch;
+	ring->ptr[(ring->wrPtr++)%ring->size] = ch;
   }
   
   char RingGet(RingBuftruct* ring)
@@ -92,20 +92,31 @@ int main(void)
 
   /*-------- реализация UART/USART Interrupt mode ---------*/
 
-  void USART2_IRQHandler (void)
+   void USART2_IRQHandler (void)
   {
 	/* USART2->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
 	/* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */
-	 if((MY_UART->SR & USART_SR_RXNE)
+	 if (MY_UART->SR & USART_SR_RXNE)
 	 {
-		 
+		 char ch = MY_UART->DR;
+		 RingInsert (&ringFromUart, ch);
+		 if(ch == '\r')
+		 {
+			 rxCnt +=1;
+		 }
 	 }
 	 
 	/* USART2->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
 	/* USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART завершена */
 	 if(MY_UART->SR & USART_SR_TC)
 	 {
-		 
+		 if(RingGetLen (&ringToUart) == 0)
+		 {
+			 //BIT_BAND_PER(MY_UART->DR, USART_TX_TXEIE_TXNFIE) = 0;
+		 }else
+		 {
+			 MY_UART->DR = RingGet(&ringToUart);
+		 }
 	 }
 	 
   }
