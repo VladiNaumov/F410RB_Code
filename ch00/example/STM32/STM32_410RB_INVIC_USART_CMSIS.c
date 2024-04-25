@@ -78,7 +78,7 @@ int main(void)
 	  {
 		  return;
 	  }
-  ring->[(ring->wrPtr++)%ring->size] = ch;
+        ring->wrPtr[(ring->wrPtr++)%ring->size] = ch;
   }
   
   char RingGet(RingBuftruct* ring)
@@ -90,7 +90,7 @@ int main(void)
 	  return ring->ptr [(ring->wrPtr++)%ring->size];
   }
 
-  /*--------  ---------*/
+  /*-------- реализация UART/USART Interrupt mode ---------*/
 
   void USART2_IRQHandler (void)
   {
