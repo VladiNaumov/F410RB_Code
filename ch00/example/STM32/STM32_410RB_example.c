@@ -13,6 +13,7 @@ void but1()
 	  }
 }
 
+/*  GPIO (but/lock)   */
 void but2()
 {
 	#include "stdbool.h"
@@ -43,9 +44,9 @@ void but2()
      		  flag_block1 = 0;
      	     }
     }
+}
 
 /*   UART   */
-
 void HAL_UARTEx_RxEventCallback (UART_HandleTypeDef *huart, uint16_t Size)
 {
 	if(huart->Instance == USART2)
