@@ -1,25 +1,3 @@
-
-void blink()
-{
-     //HAL USE
-         //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-         //HAL_Delay(100);
-         //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-         //HAL_Delay(100);
-
-     //CMSIS USE
-        //GPIOA->BSRR = GPIO_PIN_5;  //ON
-        //HAL_Delay(100);
-        //GPIOA->BSRR = GPIO_PIN_5<<16; //OFF
-        //HAL_Delay(100);
-
-     //CMSIS USE
-      GPIOA->BSRR = 0x0020; //ON
-      HAL_Delay(100);
-      GPIOA->BSRR = 0x200000; //OFF
-      HAL_Delay(100);
-}
-
 void but1()
 {
 	  if(GPIOC->IDR & GPIO_PIN_13)
@@ -119,7 +97,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 	  HAL_Delay(100);
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
-/* UART&USART*/
+/* --- UART/USART -- */
 uint8_t rx_buff[10]; // буфер (массив) на прием данных
 uint8_t tx_buff[]={0,1,2,3,4,5,6,7,8,9}; // буфер (массив) на передачу данных
 
@@ -138,7 +116,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 	__NOP();
 }
 
- // сканирование I2C порта на наличие подключения 
+ /*  сканирование I2C порта на наличие подключения  */
 void I2C_Scan ()
 {
 	// создание переменной, содержащей статус

@@ -1,4 +1,4 @@
-// Polling Mode
+/*  STM32_410RB initialization   */
 
 // включить тактирование порта USART1
 RCC->APB2ENR |=RCC_APB2ENR_USART1EN;
@@ -15,8 +15,11 @@ USART1->BRR=0x1D4C;
 //значение STOP = 0 соответствует 1 стоп-биту
 USART1->CR2=~USART_CR2_STOP;
 
-// разрешение работы RX TX
+// разрешение работы RX/TX
 USART1->CR1=~USART_CR1_RE | USART1_CR1_UE;
+
+
+/*       Job             */
 
 // передать байт данных 
 USART1->DR = data;
@@ -35,20 +38,17 @@ temp = USART1->DR;
 
 
 /* Interrupt mode
-
 использование прерываний освобождает микроконтроллер  от необходимости 
 постоянной проверки флагов и позволяет высвободить его ресурсы для других работ 
-
 */
 
 #include "main.h"
-#define F_CPU 72000000UL;
 
 
-uint32_t temp = 0, data =1, i;
-uint8_t b;
-uint32_t bufRX[8]={0};
+uint32_t temp = 0;
 
+
+/*  Interrupt mode */
 void USART1_IRQHandler(void)
 {
     /* USART2->SR: Это ссылка на регистр состояния USART1, где хранятся различные флаги состояния */
