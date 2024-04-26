@@ -188,10 +188,10 @@ USART2/SR:0xc0 - Регистр SR (Status Register) для USART2 он соде
 -/USART2/SR/CTS:0x0
 -/USART2/SR/LBD:0x0
 -/USART2/SR/TXE:0x1
--/USART2/SR/TC:0x1
--/USART2/SR/RXNE:0x0
--/USART2/SR/IDLE:0x0
--/USART2/SR/ORE:0x0
+-/USART2/SR/TC:0x1  -Регистр USART2_SR содержит бит TC (Transmission Complete), который указывает на завершение передачи данных через USART2.
+-/USART2/SR/RXNE:0x0 -Регистр RXNE (Receive Data Register Not Empty), который указывает на наличие принятых данных в регистре данных приема (Receive Data Register) USART2.
+-/USART2/SR/IDLE:0x0 -Регистр USART2_SR содержит бит IDLE (Idle Line Detected), который указывает на обнаружение состояния "простоя" (idle) на линии приема USART2.Когда бит IDLE установлен (установлен в 1): на линии приема не передает никакие данные в данный момент.
+-/USART2/SR/ORE:0x0 -Регистр указывает на обнаружение ошибки переполнения (overrun error) в приемном буфере USART2.
 -/USART2/SR/NF:0x0
 -/USART2/SR/FE:0x0
 -/USART2/SR/PE:0x0
