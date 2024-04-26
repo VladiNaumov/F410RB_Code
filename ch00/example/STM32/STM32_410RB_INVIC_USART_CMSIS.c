@@ -83,7 +83,7 @@ int main(void)
   
   char RingGet(RingBuftruct* ring)
   {
-	  if(RingGetLen(ring)==0
+	  if(RingGetLen(ring)==0)
 	  {
 		  return 0;
 	  }
@@ -112,9 +112,11 @@ int main(void)
 	 {
 		 if(RingGetLen (&ringToUart) == 0)
 		 {
-			 //BIT_BAND_PER(MY_UART->DR, USART_TX_TXEIE_TXNFIE) = 0;
+			 //USART_CR1_TCIE определяет разрешение прерывания по завершению передачи данных.(TCIE = 1), то прерывание будет OFF после завершения передачи данных.
+			 BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 0; 
 		 }else
 		 {
+			 // USART2 ->DR предназначен для записи данных, которые будут передаваться или приниматься через модуль USART
 			 MY_UART->DR = RingGet(&ringToUart);
 		 }
 	 }
@@ -125,9 +127,10 @@ int main(void)
   {
 	   while (*txt != 0)
 	   {
-		  RingInsert(&ringToUart, *txt);
+		  RingInsert(&ringToUart, *txt++);
 	   }
-	   BIT_BAND_PER(MY_UART->SR, USART_TX_TXEIE_TXNFIE) = 1;
+	   //USART_CR1_TCIE определяет разрешение прерывания по завершению передачи данных.(TCIE = 1), то прерывание будет генерироваться после завершения передачи данных.
+	   BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1;
   }
 
 
