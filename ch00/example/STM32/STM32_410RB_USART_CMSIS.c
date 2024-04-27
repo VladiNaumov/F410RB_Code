@@ -24,7 +24,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/
+
 
 /**
   * @brief  The application entry point.

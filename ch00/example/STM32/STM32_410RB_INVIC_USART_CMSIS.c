@@ -20,10 +20,69 @@
 #include "usart.h"
 #include "gpio.h"
 
+/*  STM32 — Bit Banding  */
+#include "binBanding.h"
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/
+
+/* USER CODE BEGIN  */
+
+#define MY_UART USART2
+
+/*-------- реализация кольцевого буфера ---------*/
+
+  char bufToUART[128];
+  char bufFromUart[128];
+  int rxCnt = 0;
+
+  typedef struct{
+	  uint32_t wrPtr;
+	  uint32_t rdPtr;
+	  uint32_t size;
+	  char* ptr;
+  }RingBuftruct;
+
+  RingBuftruct ringToUart = {0, 0, sizeof(bufToUART), bufToUART};
+  RingBuftruct ringFromUart = {0, 0, sizeof(bufFromUart), bufFromUart};
+
+  int RingGetLen(RingBuftruct* ring)
+  {
+	  return ring->wrPtr - ring->rdPtr;
+  }
+
+  void RingInsert(RingBuftruct*  ring, char ch)
+  {
+	  if(RingGetLen(ring) >= ring->size)
+	  {
+		  return;
+	  }
+
+	 ring-> ptr [(ring->wrPtr++)%ring->size] = ch;
+  }
+
+  char RingGet(RingBuftruct* ring)
+  {
+	  if(RingGetLen(ring)==0)
+	  {
+		  return 0;
+	  }
+	 return ring->ptr [(ring->wrPtr++)%ring->size];
+
+  }
+
+   void UsarSendString(const char* txt)
+   {
+	   while (*txt != 0)
+	   {
+		  RingInsert(&ringToUart, *txt++);
+	   }
+
+	    BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1;
+   }
+
+
+/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
@@ -31,8 +90,6 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
-
-
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -45,100 +102,66 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   
-   /* USER CODE BEGIN */
   
- /*-------- определение констант ---------*/
+ /*-------- реализация UART/USART Interrupt mode ---------*/
 
-  #define MY_UART USART2
+  void USART2_IRQHandler()
+   {
+	/* USART2->SR: Это Status Register  */
+ 	/* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */
+ 	 if (MY_UART->SR & USART_SR_RXNE) // Это означает, что в регистре находятся данные, которые можно прочитать
+ 	 {
+		 // USART2 ->DR предназначен для записи данных, которые будут передаваться или приниматься через модуль USART
+ 		 char ch = MY_UART->DR;
+ 		 RingInsert (&ringFromUart, ch);
+ 		 if(ch == '\r')
+ 		 {
+ 			 rxCnt +=1;
+ 		 }
+ 	 }
 
-  /*-------- реализация кольцевого буфера ---------*/
-  
-    char bufToUART [128];
-    char bufFromUart [128];
-	int rxCnt = 0;
-    
-  typedef struct{
-	  uint32_t wrPtr;
-	  uint32_t rdPtr;
-	  uint32_t size;
-	  char* ptr;
-  }RingBuftruct;
-   
-  RingBuftruct ringToUart = {0, 0, sizeof(bufToUART), bufToUART};
-  RingBuftruct ringFromUart = {0, 0, sizeof(bufFromUart), bufFromUart);
-  
-  int RingGetLen(RingBuftruct* ring)
-  {
-	  return ring->wrPtr - ring->rdPtr;
-  }
-  
-  void RingInsert(RingBuftruct*  ring, char ch)
-  {
-	  if(RingGetLen(ring) >= ring->size)
-	  {
-		  return;
-	  }
-	ring->ptr[(ring->wrPtr++)%ring->size] = ch;
-  }
-  
-  char RingGet(RingBuftruct* ring)
-  {
-	  if(RingGetLen(ring)==0)
-	  {
-		  return 0;
-	  }
-	  return ring->ptr [(ring->wrPtr++)%ring->size];
-  }
-
-  /*-------- реализация UART/USART Interrupt mode ---------*/
-
-   void USART2_IRQHandler (void)
-  {
-	/* USART2->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
-	/* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */
-	 if (MY_UART->SR & USART_SR_RXNE)
-	 {
-		 char ch = MY_UART->DR;
-		 RingInsert (&ringFromUart, ch);
-		 if(ch == '\r')
-		 {
-			 rxCnt +=1;
-		 }
-	 }
-	 
-	/* USART2->SR: Это ссылка на регистр состояния USART2, где хранятся различные флаги состояния */
-	/* USART_SR_TC - это флаг (Transmission Complete), который указывает на то, что передача данных через USART завершена */
-	 if(MY_UART->SR & USART_SR_TC)
-	 {
-		 if(RingGetLen (&ringToUart) == 0)
-		 {
+ 	/* USART2->SR: Это Status Register  */
+ 	/* USART_SR_TC - это флаг указывает на то, что передача данных через USART завершена */
+ 	 if(MY_UART->SR & USART_SR_TC)
+ 	 {
+ 		 if(RingGetLen(&ringToUart) == 0)
+ 		 {
 			 //USART_CR1_TCIE определяет разрешение прерывания по завершению передачи данных.(TCIE = 1), то прерывание будет OFF после завершения передачи данных.
-			 BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 0; 
-		 }else
-		 {
+ 			BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 0; // USART_CR1_TXEIE_TXNIE
+ 		 }else
+ 		 {
 			 // USART2 ->DR предназначен для записи данных, которые будут передаваться или приниматься через модуль USART
-			 MY_UART->DR = RingGet(&ringToUart);
-		 }
-	 }
-	 
-  }
+ 			 MY_UART->DR = RingGet(&ringToUart);
+ 		 }
+ 	 }
 
-  void UsarSendString(const char* txt)
-  {
+   }
+
+   void UsarSendString(const char* txt)
+   {
 	   while (*txt != 0)
 	   {
 		  RingInsert(&ringToUart, *txt++);
 	   }
 	   //USART_CR1_TCIE определяет разрешение прерывания по завершению передачи данных.(TCIE = 1), то прерывание будет генерироваться после завершения передачи данных.
-	   BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1;
-  }
+	   BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1; //USART_CR1_TCIE
+   }
 
 
+ UsarSendString("HELLO IM BOOOT \r\n ");
+ 
   /* USER CODE END */
 
   while (1)
   {
 
+	/* USER CODE END WHILE */
+
+	 UsarSendString("HELLO IM BOOOT \r\n ");
+	 USART2_IRQHandler();
+	 HAL_Delay(250);
+
+    /* USER CODE BEGIN 3 */
 	
 
   }
