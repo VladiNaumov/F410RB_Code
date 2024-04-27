@@ -27,7 +27,6 @@
 void SystemClock_Config(void);
 
 /* USER CODE BEGIN  */
-
 #define MY_UART USART2
 
 /*-------- реализация кольцевого буфера ---------*/
@@ -80,33 +79,10 @@ void SystemClock_Config(void);
 
 	    BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1;
    }
-
-
-/* USER CODE END 0 */
-
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
-int main(void)
-{
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
-  
-  
- /*-------- реализация UART/USART Interrupt mode ---------*/
-
+   
+/*-------- UART/USART Global interrupt ---------*/
   void USART2_IRQHandler()
-   {
+  {
 	/* USART2->SR: Это Status Register  */
  	/* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */
  	 if (MY_UART->SR & USART_SR_RXNE) // Это означает, что в регистре находятся данные, которые можно прочитать
@@ -147,7 +123,27 @@ int main(void)
 	   BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1; //USART_CR1_TCIE
    }
 
+/* USER CODE END */
 
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USART2_UART_Init();
+  
+ //NVIC_EnabledRQ (USART2_IRQn);
  UsarSendString("HELLO IM BOOOT \r\n ");
  
   /* USER CODE END */
@@ -157,9 +153,6 @@ int main(void)
 
 	/* USER CODE END WHILE */
 
-	 UsarSendString("HELLO IM BOOOT \r\n ");
-	 USART2_IRQHandler();
-	 HAL_Delay(250);
 
     /* USER CODE BEGIN 3 */
 	
