@@ -198,7 +198,7 @@ GPIOA/MODER:0xa80000a0 -Регистр MODER (Mode Register) для порта G
 USART2/SR:0xc0 - Регистр SR (Status Register) предоставляют информацию о состоянии USART2 и статусе приема/передачи данных.
 -/USART2/SR/CTS:0x0
 -/USART2/SR/LBD:0x0
--/USART2/SR/TXE:0x1
+-/USART2/SR/TXE:0x1  - (Transmit Data Register Empty), который указывает на состояние пустоты регистра передачи данных USART2
 -/USART2/SR/TC:0x1  -Регистр USART2_SR содержит бит TC (Transmission Complete), который указывает на завершение передачи данных через USART2.
 -/USART2/SR/RXNE:0x0 -Регистр RXNE (Receive Data Register Not Empty), который указывает на наличие принятых данных в регистре данных приема (Receive Data Register) USART2.
 -/USART2/SR/IDLE:0x0 -Регистр USART2_SR содержит бит IDLE (Idle Line Detected), который указывает на обнаружение состояния "простоя" (idle) на линии приема USART2.Когда бит IDLE установлен (установлен в 1): на линии приема не передает никакие данные в данный момент.
@@ -206,7 +206,6 @@ USART2/SR:0xc0 - Регистр SR (Status Register) предоставляют 
 -/USART2/SR/NF:0x0
 -/USART2/SR/FE:0x0
 -/USART2/SR/PE:0x0
-
 
 USART2/CR1:0x200c - Регистр SR1 (Status Register1) предоставляют информацию о состоянии USART2 и статусе приема/передачи данных, также является частью регистра USART2_SR
 -/USART2/CR1/OVER8:0x0
@@ -217,7 +216,7 @@ USART2/CR1:0x200c - Регистр SR1 (Status Register1) предоставля
 -/USART2/CR1/PS:0x0
 -/USART2/CR1/PEIE:0x0 - Регистр USART2_CR1 он содержит бит PEIE (Parity Error Interrupt Enable), который управляет разрешением прерывания при обнаружении ошибки четности (parity error) в USART2.
 -/USART2/CR1/TXEIE:0x0 -Регистр USART2_CR1 он содержит бит TXEIE (Transmit Data Register Empty Interrupt Enable), который управляет разрешением прерывания при пустом регистре передачи данных (Transmit Data Register) USART2.
--/USART2/CR1/TCIE:0x0 - (Transmission Complete Interrupt Enable) - это бит в регистре CR1, который определяет разрешение прерывания по завершению передачи данных. Когда этот бит установлен (TCIE = 1), то прерывание будет генерироваться после завершения передачи данных.
+-/USART2/CR1/TCIE:0x0 - (Регистр USART2_CR1 он содержит бит TCIE Transmission Complete Interrupt Enable) - который определяет разрешение прерывания по завершению передачи данных. Когда этот бит установлен (TCIE = 1), то прерывание будет генерироваться после завершения передачи данных.
 -/USART2/CR1/RXNEIE:0x0 -Этот бит управляет разрешением прерывания по приему данных (Receive Data Register Not Empty) USART.
 -/USART2/CR1/IDLEIE:0x0
 -/USART2/CR1/TE:0x1

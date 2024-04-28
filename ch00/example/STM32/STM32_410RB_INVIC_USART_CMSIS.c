@@ -66,7 +66,7 @@ void SystemClock_Config(void);
 	  {
 		  return 0;
 	  }
-	 return ring->ptr [(ring->wrPtr++)%ring->size];
+	 return ring->ptr [(ring->rdPtr++)%ring->size];
 
   }
 
@@ -97,8 +97,8 @@ void SystemClock_Config(void);
  	 }
 
  	/* USART2->SR: Это Status Register  */
- 	/* USART_SR_TC - это флаг указывает на то, что передача данных через USART завершена */
- 	 if(MY_UART->SR & USART_SR_TC)
+ 	
+ 	 if(MY_UART->SR & USART_SR_TC) /* USART_SR_TC - это флаг указывает на то, что передача данных через USART завершена */
  	 {
  		 if(RingGetLen(&ringToUart) == 0)
  		 {
@@ -158,7 +158,20 @@ int main(void)
   {
 
 	/* USER CODE END WHILE */
-
+		if(rxCnt != rxserv)
+		{
+			char ch;
+		    int maxLen = RingGetLen(&ringFromUart);
+			do{
+				ch=RingGet(&ringFromUart);
+				RingInsert(&ringToUart, ch);
+			}while ((maxLen-- !=0 && ch!= '\r'));
+			RingInsert(&ringToUart,'\r');
+			RingInsert(&ringToUart,'\n');
+			
+			BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1;
+			rxserv +=1;
+		}
 
     /* USER CODE BEGIN 3 */
 	
