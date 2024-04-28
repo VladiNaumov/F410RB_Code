@@ -83,6 +83,8 @@ USART1->CR1 |= USART1_CR1_ICE;
 // разрешит прерывание поприему 
 USART1->CR1 |= USART1_CR1_RXNEIE;
 
+// разрешить прерывание от usart2 (HAL)
+ HAL_NVIC_EnableIRQ(USART2_IRQn);
 
 
 
