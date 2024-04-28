@@ -143,7 +143,13 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   
- //NVIC_EnabledRQ (USART2_IRQn);
+ /* USER CODE  */
+ 
+ /* UART/USART installation Global interrupt */
+  //NVIC_EnabledRQ (USART2_IRQn);
+ HAL_NVIC_EnableIRQ(USART2_IRQn);
+ 
+ 
  UsarSendString("HELLO IM BOOOT \r\n ");
  
   /* USER CODE END */
