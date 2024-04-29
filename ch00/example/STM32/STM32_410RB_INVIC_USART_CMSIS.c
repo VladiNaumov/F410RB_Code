@@ -17,14 +17,19 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "usart.h"
-#include "gpio.h"
 
 /*  STM32 — Bit Banding  */
 #include "binBanding.h"
 
+/* Private variables*/
+UART_HandleTypeDef huart2;
+
+
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+
 
 /* USER CODE BEGIN  */
 #define MY_UART USART2
@@ -87,7 +92,7 @@ void SystemClock_Config(void);
   {
 	/* USART2->SR: Это Status Register  */
  	/* USART_SR_RXNE: Это константа флага, обозначающая, что входной буфер данных USART не пуст. */
- 	 if (MY_UART->SR & USART_SR_RXNE) // Это означает, что в регистре находятся данные, которые можно прочитать
+ 	 if (MY_UART->SR & USART_CR1_RXNEIE) // (MY_UART->SR & USART_SR_RXNE) // Это означает, что в регистре находятся данные, которые можно прочитать
  	 {
 		 // USART2 ->DR предназначен для записи данных, которые будут передаваться или приниматься через модуль USART
  		 char ch = MY_UART->DR;
@@ -100,7 +105,7 @@ void SystemClock_Config(void);
 
  	/* USART2->SR: Это Status Register  */
  	
- 	 if(MY_UART->SR & USART_SR_TC) /* USART_SR_TC - это флаг указывает на то, что передача данных через USART завершена */
+ 	 if(MY_UART->SR & USART_CR1_TCIE ) //(MY_UART->SR & USART_SR_TC ) /*  это указывает на то, что передача данных через USART завершена */
  	 {
  		 if(RingGetLen(&ringToUart) == 0)
  		 {
