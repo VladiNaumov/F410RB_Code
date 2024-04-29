@@ -33,7 +33,6 @@ void SystemClock_Config(void);
 
   char bufToUART[128];
   char bufFromUart[128];
-  int rxCnt = 0;
 
   typedef struct{
 	  uint32_t wrPtr;
@@ -44,6 +43,9 @@ void SystemClock_Config(void);
 
   RingBuftruct ringToUart = {0, 0, sizeof(bufToUART), bufToUART};
   RingBuftruct ringFromUart = {0, 0, sizeof(bufFromUart), bufFromUart};
+  
+  uint32_t rxCnt = 0;
+  uint32_t rxserv = 0;
 
   int RingGetLen(RingBuftruct* ring)
   {
@@ -110,6 +112,9 @@ void SystemClock_Config(void);
  			 MY_UART->DR = RingGet(&ringToUart);
  		 }
  	 }
+	 
+	 /* Передача управления библиотечной функции HAL для обработки прерывания  */ 
+	   HAL_UART_IRQHandler(&huart2); 
 
    }
 
@@ -147,7 +152,10 @@ int main(void)
  
  /* UART/USART installation Global interrupt */
   //NVIC_EnabledRQ (USART2_IRQn);
- HAL_NVIC_EnableIRQ(USART2_IRQn);
+  
+  // Разрешить прерывания от USART2
+  HAL_NVIC_EnableIRQ(USART2_IRQn);
+  //HAL_UART_IRQHandler(&huart2);
  
  
  UsarSendString("HELLO IM BOOOT \r\n ");
@@ -163,14 +171,15 @@ int main(void)
 			char ch;
 		    int maxLen = RingGetLen(&ringFromUart);
 			do{
-				ch=RingGet(&ringFromUart);
+				ch = RingGet(&ringFromUart);
 				RingInsert(&ringToUart, ch);
-			}while ((maxLen-- !=0 && ch!= '\r'));
+			}while ((maxLen-- !=0 && ch!='\r'));
 			RingInsert(&ringToUart,'\r');
 			RingInsert(&ringToUart,'\n');
 			
 			BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1;
 			rxserv +=1;
+			HAL_Delay(1000);
 		}
 
     /* USER CODE BEGIN 3 */
