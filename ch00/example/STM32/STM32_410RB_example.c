@@ -46,7 +46,7 @@ void but2()
     }
 }
 
-/*   UART   */
+/*   UART  interrupt */
 void HAL_UARTEx_RxEventCallback (UART_HandleTypeDef *huart, uint16_t Size)
 {
 	if(huart->Instance == USART2)
