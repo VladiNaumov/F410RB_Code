@@ -38,6 +38,7 @@ static void MX_USART2_UART_Init(void);
 
   char bufToUART[128];
   char bufFromUart[128];
+  int rxCnt = 0;
 
   typedef struct{
 	  uint32_t wrPtr;
@@ -48,9 +49,7 @@ static void MX_USART2_UART_Init(void);
 
   RingBuftruct ringToUart = {0, 0, sizeof(bufToUART), bufToUART};
   RingBuftruct ringFromUart = {0, 0, sizeof(bufFromUart), bufFromUart};
-  
-  uint32_t rxCnt = 0;
-  uint32_t rxserv = 0;
+
 
   int RingGetLen(RingBuftruct* ring)
   {
@@ -171,7 +170,7 @@ int main(void)
   {
 
 	/* USER CODE END WHILE */
-		if(rxCnt != rxserv)
+		if(rxCnt != 0)
 		{
 			char ch;
 		    int maxLen = RingGetLen(&ringFromUart);
@@ -183,8 +182,8 @@ int main(void)
 			RingInsert(&ringToUart,'\n');
 			
 			BIT_BAND_PER(MY_UART->CR1, USART_CR1_TCIE) = 1;
-			rxserv +=1;
-			HAL_Delay(1000);
+			rxCnt = 0;
+			//HAL_Delay(1000);
 		}
 
     /* USER CODE BEGIN 3 */
